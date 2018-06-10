@@ -1,0 +1,83 @@
+---
+title: "ACTIVIDAD 6 UD 6"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+## Actividad GLM
+
+
+Carga el dataset "absentismo.csv"
+```{r}
+df <- read.csv("ACTIVIDAD_6_UD6_absentismo.csv")
+head(df)
+str(df)
+summary(df)
+```
+¿Qué GLM es adecuado para hacer regresión de la variable objetivo "ausencias" ?
+
+- Convierte las variables género en factores. El tipo de escuela en urbana (1) y rural (2) también y programas en A,B,C,D 
+respectivamente. Monta después una `model.matrix` sobre el dataset.
+- Calcula la media de ausencias en función de género y en función de tipo escuela, así también como el tipo de programa.
+- ¿ Se pueden considerar que la media de ausencias en la urbana y la rural iguales? ¿Se puede considerar que las medias en distintos 
+programas son iguales?
+- Aplica un glm binomial negativo para analizar la relación entre ausencias y las variables
+- Seleccionar el mejor modelo con stepAIC
+
+
+Transformamos en factores
+```{r}
+attach(df)
+df$genero <- factor(genero, levels=1:2,labels = c("fem","masc"))
+df$tipoescuela <- factor(tipoescuela,levels = 1:2, labels = c("urbana","rural"))
+df$programa <- factor(programa, levels=0:3,labels = c("A","B","C","D"))
+```
+
+Vemos la nueva matriz
+```{r}
+head(df,30)
+tail(df)
+str(df)
+summary(df)
+```
+
+
+Aplicamos a ausencias la media según categorías para observar si difieren los valores y hacemos ANOVAS
+```{r}
+tapply(df$ausencias,df$genero,mean)
+tapply(df$ausencias,df$tipoescuela,mean)
+tapply(df$ausencias,df$programa,mean)
+```
+
+```{r}
+oneway.test(df$ausencias ~ df$genero)
+oneway.test(df$ausencias ~ df$tipoescuela)
+oneway.test(df$ausencias ~ df$programa)
+```
+Se pueden considerar distintas según el tipo de escuela ó género pero no según el programa las ausencias.
+
+Entrenamos un glm binomial negativo
+```{r}
+library(MASS)
+mod <- model <- glm.nb(ausencias~., data = df)
+summary(mod)
+```
+
+
+Seleccionamos usando AIC el mejor conjunto de atributos:
+```{r}
+fit1 <- glm.nb(ausencias~., data=df)
+fit0 <- glm.nb(ausencias~1, data=df)
+library(MASS)
+step <-stepAIC(fit0,direction="forward",scope=list(upper=fit1,lower=fit0))
+step$coefficients
+```
+
+
+Damos el sumario y los intervalos de confianza de los coeficientes
+```{r}
+summary(step)
+exp(cbind(coef(step),confint(step)))
+```

@@ -1,0 +1,67 @@
+
+/* Dropit menú */
+.dropnav, .dropnav li {
+    list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.dropnav .dropit-trigger { position: relative; }
+.dropnav .dropit-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0; /* dropdown left or right */
+    z-index: 1000;
+    display: none;
+    min-width: 150px;
+    list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.dropnav .dropit-open .dropit-submenu { display: block; }
+
+/* aspecto dropit menu */
+.dropnav a {
+	display: block;
+	padding: 3px 8px;
+	text-decoration: none;
+	color: #333;
+	font-size: 12px;
+	line-height: 24px;
+	transition:background .3s ease;
+	text-align:left;
+
+}
+.header-dropnav {
+	border:1px solid #ddd;
+	display:block;
+	position:relative;
+	border-radius:2px;
+}
+.header-dropnav:after {
+	right:10px; top:50%; margin-top:-1px;
+	position:absolute;
+	display:block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 5px 4px 0 4px;
+	border-color: #565656 transparent transparent transparent;
+	content:" ";
+}
+.options-dropnav { background-color:#fff; box-shadow:rgba(0,0,0,0.16) 0 1px 3px; width:100%; box-sizing:border-box; border:1px solid #ddd; border-top:none;}
+.options-dropnav a { border-bottom:1px solid #ddd;}
+.options-dropnav li:last-child a { border-bottom:none; }
+
+.icon_estado_comunicacion { background-repeat:no-repeat; background-position:0 center; width:32px; height:24px; display:inline-block; margin-right:12px; border-right:1px solid rgba(0,0,0,0.14); vertical-align:middle;}
+.icon_estado_comunicacion.estado_disponible {
+	background-image: url(../img/iEstado_disponible.png);
+}
+.icon_estado_comunicacion.estado_noDisponible {
+	background-image: url(../img/iEstado_noDisponible.png);
+}
+.icon_estado_comunicacion.estado_silenciado {
+	background-image: url(../img/iEstado_silenciado.png);
+}
+
+.options-dropnav a:hover {  background-color:#f0f0f0;}
+.options-dropnav a.estado_select { font-weight:bold; } 

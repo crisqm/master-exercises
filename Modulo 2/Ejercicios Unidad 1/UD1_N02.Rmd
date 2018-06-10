@@ -1,0 +1,232 @@
+---
+title: "UD1 N02"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+# Tipos de dato
+
+En el notebook anterior hemos presentado los vectores. Vamos a ver a continuación el resto de tipos.
+
+### Factores
+
+Son "vectores" que tienen componentes categóricas.
+
+```{r}
+prov<-c("lu","co","lu","po","co","or","co","lu","lu","po","co","or","co","co","lu","po")
+prov
+class(prov) #esto es ahora mismo un vector compuesto por carácteres
+```
+
+Lo transformamos en factor, en la transformación se establecen los **Levels**, que son las distintas categorías contenidas por el factor
+```{r}
+provf<-factor(prov) #convertimos en factor
+provf
+class(provf)
+levels(provf) 
+```
+```{r}
+which(provf=="lu")
+```
+
+Modificamos el tipo de los elementos de un  factor
+```{r}
+as.character(provf)
+q <- factor(c('0.8','2.4','3.1'))
+q
+as.double(q)
+```
+Instalamos la librería *plyr*  y vemos su aplicación
+```{r}
+# install.packages("plyr")
+library(plyr) #carga la librería
+help(plyr) #da información sobre la librería
+
+count(provf)
+
+```
+```{r}
+count(provf) #cuenta las variables
+```
+```{r}
+table(provf) #otra forma de contarlas
+```
+
+### Arrays y matrices
+
+Son matrices que contienen un único tipo de elemento. Admiten las operaciones de **álgebra lineal usuales**
+
+```{r}
+A <- array(1:20,dim=c(4,5))
+A
+
+class(A)
+
+A[1,3] #extrae posición (1,3)
+A[,1] #extrae columna 1
+A[3,] #extrae fila 3
+A[1:3, 2:5] #selecciona una submatriz con las filas entre 1 y 3 y columnas entre 2 y 5
+
+nrow(A) # número filas
+ncol(A) # número columnas
+dim(A) #dimensión
+t(A) #transposición de la matriz
+
+A*A #producto posición a posición
+A^3 #potencia posición a posición
+
+sin(A) #seno de la matriz 
+B<- A[1:2,1:2] #definimos una nueva matriz B 
+B
+A
+
+solve(B) #inversa de la matriz
+
+B%*%solve(B) #producto matricial
+```
+### DataFrames
+
+Los dataframes son tablas en las que cada columna representa una lectura de naturaleza distinta. Por ejemplo una columna puede ser altura, otro color de pelo, etc...
+
+Son el caballo de batalla del análisis de datos, ya que es el formato estructurado en el que se representan habitualmente los mismos.
+
+Vemos antes de los dataframes operaciones de listado de variables y borrado auxiliares
+```{r}
+ls() #lista todas las variables creadas
+rm("A") #quita la variable A
+ls()
+rm(list=ls()) #quita todos los elementos en memoria
+ls()
+```
+
+A continuación vemos los dataframes
+
+```{r}
+name <- c("Luis","Carmen", "Pedro"); edad <- c(15,10,30); altura <- c(1.65,1.85, 1.45)
+M <- data.frame(name,edad, altura)
+M
+```
+
+Atributos principales
+```{r}
+attributes(M) #nombres de las columnas y de las filas así como el tipo de dato
+dim(M) #dimensión
+colnames(M) #nombres de columnas
+rownames(M) #nombres de filas
+nrow(M) #número de filas
+ncol(M) #número de columnas
+
+```
+Para obtener un resumen rápido del dataframe usamos str, este comando indica el tipo de cada columna y sus primeros valores. Con el comando head podemos ver el encabezamiento (primeras filas) del dataframe
+```{r}
+str(M)
+```
+```{r}
+head(M)
+```
+
+Vemos a continuación cómo se toman subconjuntos del dataframe, cómo se pueden modficar valores y otras operaciones esenciales.
+```{r}
+M$name #seleccionamos columnas
+M$edad
+M$altura
+
+M[1,] #selecciona primera fila
+M[1,1:2] #selecciona de la primera fila las posiciones de la primera y segunda columna
+M[,-1] #todo el dataframe salvo la última columna
+M['altura'] #columna altura
+M$altura <- c(1.9,2, 50) #modificamos los valores de la columna altura
+M
+
+M$peso <- 4*M$edad +2*cos(M$altura) #aplicamos transformaciones de columnas
+M
+
+subset(M,select=c(name,edad)) #otros modos de tomar subconjuntos
+subset(M,subset=c(name=="Luis"))
+M[M$name=="Luis" & M$edad<20,]
+```
+
+### Listas
+
+Las listas son "vectores" heterogéneos, esto significa que cada elemento puede ser de un tipo distinto. Tienen nombres de almacenamiento mediante los que se accede los valores.
+
+```{r}
+Lst <- list(name="Fred", wife="Mary", no.children=3, child.ages=c(4,7,9))
+Lst
+
+Lst$name
+Lst$wife
+Lst$no.children
+Lst$child.ages
+
+length(Lst) #longitud
+attributes(Lst) #atributos
+names(Lst) #claves para acceder a los elementos
+
+
+Lst[[1]] #también se puede acceder por posición
+Lst[[4]]
+Lst[[4]][3]
+```
+
+Se pueden **atar** los elementos de una lista como variables de entorno para acceder con mayor facilidad mediante el comando `attach` . En esta operación hay que tener cuidado de que los nombres no coincidan con una variable global, de lo contrario no se dispondrá, en este caso sucede para `name`
+```{r}
+attach(Lst) #atamos la variable Lst de modo que sus componentes son variables globales
+wife
+no.children
+child.ages
+```
+### Series temporales (ts)
+
+Son vectores que tienen atributos temporales, habitualmente fecha y hora y/ó frecuencia. Su cl
+
+```{r}
+serie <- ts(1:10, start = 1959) #crea una serie que empieza en 1959, R lo interpreta como anual
+serie
+
+class(serie)
+
+attributes(serie) #atributos
+
+ts(1:47, frequency = 12, start = c(1959, 2)) #crea una serie con frecuencia mensual empezando en el segundo mes
+ts(1:10, frequency = 4, start = c(1959, 3)) #frecuencia trimestral empezando en tercer trimestre
+ts(matrix(rpois(36, 5), 12, 3), start=c(1961, 1), frequency=12)
+```
+
+## ACTIVIDAD REFUERZO
+##------------
+
+Crea un dataframe a partir de los vectores
+X <- c(1,2,3,1,4,5,2)
+Y <- c(0,3,2,0,5,9,3)
+
+- 1) Elimina los duplicados usando una función de R adecuada . Mirar help(unique)
+- 2) Pon nombre a las filas con nombres "CA","SE","MA","BA","VA"
+- 3) Crea una nueva columna Z que sea la suma de las dos primeras dividida por la primera
+- 4) Cambia el valor X de la provicincia BA por 2
+- 5) Selecciona aquellas provincias cuyo valor Y sea menor que 4
+- 6) Crea un factor que indique si es costera o no la ciudad (C ó I) y añádelo como columna
+
+
+## SOLUCIÓN:
+```{r}
+X <- c(1,2,3,1,4,5,2)
+Y <- c(0,3,2,0,5,9,3)
+M <- data.frame(X,Y)
+M
+
+M <- unique(M)
+M
+rownames(M) <- c("CA","SE","MA","BA","VA")
+M
+M$Z <- (M$X+M$Y)/M$X
+M
+M$costa <- factor(c("C","I","I","C","C"))
+M
+lapply(M,class)
+M
+M[rownames(M)=="BA","X"] <-2
+M
+```
+

@@ -1,0 +1,104 @@
+---
+title: "UD1 N01"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+# Elementos básicos de R
+
+El elemento más básico con el que se  trabaja son los vectores. Así un vector
+$$(1,4,2,3,2,-10)$$
+Se escribe en R como:
+```{r}
+c(1,4,2,3,2,-10)
+```
+Para definir variables usaremos el símbolo `<-` y para realizar operaciones ariméticas los símbolos habituales. 
+
+```{r}
+a <- c(1,2,3,4)
+a
+a+5
+a-10
+a*4
+a^2
+a/5
+a-a
+b <- a-10
+b
+```
+R incorpora las funciones matemáticas clásicas aplicables a sus objetos, que a su vez son operables entre si
+```{r}
+sqrt(a)
+exp(a)
+log(a)
+cos(a)
+c <- (a + sqrt(a))/(exp(2)+1)
+a+b
+a*b
+a/b
+(a+3)/(sqrt(1-b)*2-1)
+```
+Para obtener información de una función se selecciona y se pulsa **F1** ó escribimos
+```{r}
+help(sqrt)
+```
+# Operaciones en vectores y booleanos
+
+Generar un vector, identificar el tipo de objeto y averiguar su longitud:
+```{r}
+x<-c(1:10)
+class(x)
+length(x)
+
+```
+Generar vectores con saltos por intervalos, vectores de valores repetidos, vectores con carácteres.
+```{r}
+seq(1,9,by=2)
+seq(1,9,length=6) 
+
+rep(3,10)
+
+x<-c("a","e","i","o","u")
+x
+class(x)
+```
+Ordenar vectores
+```{r}
+a <- c(2,4,6,3,1,5)
+b <- sort(a)
+c <- sort(a,decreasing = TRUE)
+a
+b
+c
+```
+Booleanos (**Verdadero: TRUE ó T y Falso: FALSE ó F** que indican si se cumple una condición en cada posición de un vector. El símbolo `!` es una negación.
+```{r}
+c(TRUE, FALSE)
+c(F, T)
+!c(F,T)
+c(F,T) == !c(T,F)
+x<-c(1,-1,2,-2)
+x>0
+```
+Subindexación del vector usando una máscara en forma de condición:
+```{r}
+x[x>0]
+x[1:3]
+x[-(1:3)]
+x[c(T,F)] #coordenadas impares
+x[c(F,T)] #coordenadas pares
+```
+Reasignación de valores según posición, saber si una posición es un `NaN` (un valor faltante ó desconocido), saber qué posiciones tienen valores faltantes, seleccionar aquellas posiciones que no tienen valor faltante
+```{r}
+x[5] <- NaN
+x
+!is.na(x)
+is.na(x)
+
+x[!is.na(x)] #elimina del vector los Nan
+which(is.nan(x))
+```
+
+
+

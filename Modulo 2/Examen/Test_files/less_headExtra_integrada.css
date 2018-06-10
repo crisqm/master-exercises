@@ -1,0 +1,234 @@
+body {
+  background-position: 0 110px !important;
+  background-repeat: repeat-x;
+  padding-top: 110px !important;
+}
+#menu,
+.wrapper-iframe {
+  top: 110px !important;
+}
+.container-column {
+  top: 194px !important;
+}
+#ultimoPunto {
+  top: 158px !important;
+}
+div#botonera {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-image: url(imgcssIMF/solapas/degranaranja.gif);
+  background-repeat: repeat-x;
+  background-position: 0 0;
+}
+@media only screen and (min-width: 998px) and (min-height: 600px) {
+  #lstReproductor,
+  .global.videosUnidad {
+    top: 138px !important;
+  }
+}
+div#botonera {
+  text-align: center;
+  top: 30px;
+}
+#menuExtra {
+  height: 28px;
+  text-align: center;
+  font: 12px/16px Arial, Helvetica, sans-serif;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #424242;
+  border-bottom: 2px solid #fff;
+  z-index: 1001;
+}
+.contentC {
+  width: 72em;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 28px;
+  position: relative;
+  max-width: 100%;
+}
+.contentC * {
+  text-align: left;
+}
+.titMaster {
+  float: left;
+  text-transform: uppercase;
+  font-size: 90%;
+  padding-right: 15px;
+  text-shadow: #000 1px 0;
+}
+.titMaster a {
+  color: #fff;
+  text-shadow: #000 1px 1px;
+  text-decoration: none;
+}
+.menu_head {
+  background-color: #9f2b2f;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#ac2e33),to(#8c2529));
+  background-image: -webkit-linear-gradient(top,#ac2e33,#8c2529);
+  background-image: -moz-linear-gradient(top,#ac2e33,#8c2529);
+  background-image: -o-linear-gradient(top,#ac2e33,#8c2529);
+  background-image: linear-gradient(top,#ac2e33,#8c2529);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#ac2e33', EndColorStr='#8c2529');
+  margin-top: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.iMenu_head {
+  padding: 0 27px 0 7px;
+  height: 1.6em;
+  line-height: 1.6em;
+  background-image: url(../img/iMenuHead.png);
+  background-repeat: no-repeat;
+  background-position: right 3px;
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  box-sizing: border-box;
+}
+.contentMenu ul,
+.contentMenu li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.contentMenu li {
+  display: inline;
+}
+.menu_body a,
+.noIni {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  line-height: 1.2em;
+  padding: 4px;
+  font-size: 0.92em;
+  zoom: 1;
+}
+.noIni {
+  color: #999;
+}
+.menu_body a:hover {
+  background-color: #b74f4e;
+}
+.contentMenu {
+  width: 280px;
+  position: absolute;
+  right: 0;
+}
+#scrollbar1 {
+  width: 274px;
+  clear: both;
+  height: 85px;
+  position: absolute;
+  left: 3px;
+  top: 25px;
+  background-image: url(imgcss/bgMenu.png);
+  border-radius: 0 0 3px 3px;
+}
+#scrollbar1 .viewport {
+  width: 258px;
+  height: 82px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2px;
+}
+#scrollbar1 .overview {
+  list-style: none;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  margin-left: 3px;
+}
+#scrollbar1 .thumb .end,
+#scrollbar1 .thumb {
+  background-color: #CCC;
+}
+#scrollbar1 .scrollbar {
+  position: relative;
+  float: right;
+  width: 12px;
+  height: 82px;
+  margin-top: 2px;
+}
+#scrollbar1 .track {
+  background-color: #909090;
+  height: 82px;
+  width: 5px;
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+}
+#scrollbar1 .thumb:hover {
+  background-color: #fff;
+}
+#scrollbar1 .thumb {
+  height: 38px;
+  width: 5px;
+  cursor: pointer;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  border-radius: 3px;
+}
+#scrollbar1 .disable {
+  display: none;
+}
+.contentC .moduloFormativo {
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  margin-left: 3px;
+  font-size: 11px;
+  display: block;
+  line-height: 18px;
+  margin-top: 4px;
+  padding-top: 4px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.contentC .moduloFormativo:first-child {
+  border-top: none;
+}
+.titMaster {
+  display: inline-block;
+  max-width: 32%;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+}
+.titMaster:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  right: 4px;
+  top: 0;
+  background-image: url(../img/sep_migas_white.png);
+  background-position: center center;
+  width: 12px;
+  height: 28px;
+  background-repeat: no-repeat;
+  opacity: .4;
+  transition: all .3s;
+}
+.titMaster:hover:before {
+  opacity: 1;
+}
+.menu_body .unidadFormativa a {
+  padding-left: 7px;
+}
+.contentMenu {
+  float: left;
+  position: relative;
+  right: auto;
+}

@@ -1,0 +1,522 @@
+@import url('//fonts.googleapis.com/css?family=Droid+Sans+Mono');
+body {
+  background-position: 0 80px !important;
+  background-repeat: repeat-x;
+  padding-top: 80px !important;
+}
+#menu {
+  top: 80px !important;
+}
+#menu {
+  height: auto !important;
+  bottom: 0;
+}
+.container-column {
+  top: 164px !important;
+}
+#ultimoPunto {
+  top: 128px !important;
+  z-index: 9997 !important;
+}
+.wrapper-iframe {
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  background-color: #fff;
+}
+.wrapper-iframe iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+div#botonera {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-image: url(imgcssIMF/solapas/degranaranja.gif);
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  text-align: center;
+}
+.iconNav {
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-right-color: #FFFFFF;
+  border-left-color: #d4d4d4;
+  margin: 0px;
+  height: 74px;
+}
+#salir a {
+  background-image: url(imgcssIMF/solapas/salir.gif);
+  background-repeat: no-repeat;
+  height: 24px;
+  width: 33px;
+  background-position: top;
+  display: block;
+}
+#salir a:hover {
+  background-image: url(imgcssIMF/solapas/salir_hover.gif);
+  background-repeat: no-repeat;
+}
+#botonera {
+  height: 80px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  padding: 0px;
+  border: none;
+  margin: 0 auto;
+}
+#botonera td {
+  border: none;
+  vertical-align: top;
+}
+#botonera #indicador_nuevo {
+  height: 80px;
+  width: 153px;
+  background-image: url(imgcssIMF/solapas/indicador_NARANJA_NUEVA.jpg);
+  background-repeat: no-repeat;
+  border: none;
+  padding-left: 1px;
+}
+#botonera #indicador {
+  height: 80px;
+  width: 153px;
+  background-image: url(imgcssIMF/solapas/indicador_NARANJA.jpg);
+  background-repeat: no-repeat;
+  border: none;
+}
+#botonera #salir {
+  border: none;
+  width: 33px;
+  position: absolute;
+}
+#botonera #salir span {
+  display: none;
+}
+#botonera {
+  min-width: 760px;
+}
+#botonera #agenda,
+#botonera #ayuda {
+  border-right-style: none;
+}
+.iconNav a,
+.iconNav a:link,
+.iconNav a:visited {
+  height: 12px;
+  display: block;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #666666;
+  text-align: center;
+  padding-top: 47px;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-weight: normal;
+  line-height: 29px;
+  outline: none;
+  background-image: url(imgcssIMF/solapas/grises15.png);
+  padding-right: 6px;
+  padding-left: 6px;
+  min-width: 52px;
+}
+.iconNav a:focus {
+  outline: none;
+}
+#indice a {
+  background-position: center 0;
+}
+#tutor a {
+  background-position: center -82px;
+  min-width: 56px;
+}
+#avisos a {
+  background-position: center -164px;
+}
+#expediente a {
+  background-position: center -246px;
+}
+#recursos a {
+  background-position: center -328px;
+}
+#alumnosB a {
+  background-position: center -410px;
+}
+#comunicacion a {
+  background-position: center -492px;
+}
+#chat a {
+  background-position: center -574px;
+}
+#wowza a,
+#comunicaciones a {
+  background-position: center -737px;
+}
+#ayuda a {
+  background-position: center -656px;
+}
+#agenda a {
+  background-position: center -821px;
+}
+#botonera 
+#cargando {
+  font-size: 11px;
+  background-image: url(imgcssIMF/solapas/loadsolapa.gif);
+  display: block;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #666666;
+  text-align: center;
+  padding-top: 50px;
+  background-repeat: no-repeat;
+  background-position: center 21px;
+  line-height: 23px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 0;
+  height: auto;
+}
+#botonera .selec {
+  border: none;
+  background: #993237;
+  height: 80px;
+}
+#botonera #expediente.selec {
+  padding-bottom: 0;
+}
+.iconNav a:hover,
+.selec a,
+.selec a:link,
+.selec a:visited {
+  background-image: url(imgcssIMF/solapas/color15.png);
+}
+.selec a,
+.selec a:link,
+.selec a:visited {
+  color: #fff;
+}
+#botonera .idioma {
+  display: block;
+  padding: 0;
+  width: 33px;
+  float: left;
+  height: 100%;
+  border: 1px solid #d4d4d4;
+  border-radius: 0 15px 15px 0;
+  text-align: center;
+}
+#botonera .idioma a {
+  display: block;
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+  line-height: 20px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+#botonera .idioma.seleccionado {
+  height: 100%;
+  background-color: #FEA94E;
+  border-color: #FEA94E;
+}
+#botonera .idioma.seleccionado a {
+  color: #fff;
+}
+#botonera .idioma:first-child {
+  border-right: none;
+  border-radius: 15px 0 0 15px;
+  padding-left: 2px;
+}
+#botonera .idioma:last-child {
+  border-left: none;
+  padding-right: 2px;
+}
+#botonera #idiomas {
+  position: absolute;
+  margin-top: -34px;
+  border: none;
+  height: 21px;
+  font-size: 0;
+  margin-left: 8px;
+}
+#botonera table,
+#botonera td {
+  box-shadow: none;
+  border: none;
+  padding: 0;
+}
+#spanIndicador {
+  padding: 0 8px 9px;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#indicadorConexion {
+  display: block;
+  height: 36px;
+  float: left;
+  width: 80px;
+  background-repeat: no-repeat;
+  background-position: 67px 10px;
+}
+#spanNumCurso,
+#spanNumTotal {
+  float: left;
+  width: 83px;
+  line-height: 15px;
+  color: #fff;
+  text-align: right;
+}
+#indicadorDerecha {
+  width: 50px;
+  height: 71px;
+  float: right;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.iconEstadoVerde {
+  background-image: url('imgcss/iconEstadoVerde.png');
+}
+.iconEstadoGris {
+  background-image: url('imgcss/iconEstadoGris.png');
+}
+.iconEstadoRojo {
+  background-image: url('imgcss/iconEstadoRojo.png');
+}
+.iconTutorDisponible {
+  background-image: url('imgcss/tutordisponible.png');
+}
+#indicadorDerecha.iconTutorNoDisponible {
+  background-image: url('imgcss/tutornodisponible.png');
+  background-position: center 0;
+}
+.iconTutorTrabajando {
+  background-image: url('imgcss/tutortrabajando.png');
+}
+#nuevaTutoria {
+  display: none;
+  background-color: #8457A2;
+  color: #fff;
+  height: 71px;
+  width: 137px;
+  position: absolute;
+  z-index: 9;
+  margin: 0 8px 9px;
+  top: 0;
+  font: 11px/15px Verdana, Geneva, sans-serif;
+  background: #8457A2 url(imgcss/iconTutoriaResuelta.png) no-repeat 8px 20px;
+}
+#nuevaTutoria span {
+  display: block;
+  padding: 12px 6px 0 62px;
+  text-align: left;
+}
+#spNumCurso,
+#spNumTotal {
+  float: left;
+  display: block;
+  text-align: right;
+  width: 19px;
+  margin-right: 4px;
+  font-size: 11px;
+}
+#sptxtTotal,
+#sptxtCurso {
+  display: block;
+  float: left;
+  text-align: left;
+  vertical-align: middle;
+  width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+#spanNumCurso,
+#spanNumTotal {
+  display: block;
+  position: absolute;
+  width: 135px;
+}
+#spanNumCurso {
+  bottom: 28px;
+}
+#spanNumTotal {
+  bottom: 12px;
+}
+#scrollbar1 {
+  z-index: 2;
+}
+#comunicaciones a {
+  position: relative;
+}
+.estado_conectividad {
+  display: none;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 23px;
+  left: 50%;
+  margin-left: -7px;
+  background-image: url(../img/conectividad_nula.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+#comunicaciones a:hover .estado_conectividad {
+  background-position: -15px 0;
+}
+.conectividad-nula .estado_conectividad {
+  display: block;
+}
+.conectividad-nula a {
+  color: #B3B3B3;
+  text-shadow: #fff 1px 1px;
+}
+.box-informacion_conectividad:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -6px;
+  top: -6px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent rgba(0,0,0,0.92) transparent;
+}
+.box-informacion_conectividad {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -230px;
+  width: 460px;
+  text-align: center;
+  margin-top: 16px;
+  background-color: rgba(0,0,0,0.92);
+  color: #fff;
+  z-index: 999;
+  border-radius: 2px;
+  box-shadow: rgba(0,0,0,0.85) 0 12px 25px -12px;
+}
+.pad-box-informacion_conectividad {
+  padding: 18px;
+}
+.iconNav a .box-informacion_conectividad {
+  text-transform: none;
+  font: normal 13px/20px Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+  text-shadow: none;
+}
+.iconNav a .tit-info-informacion_conectividad {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.iconNav a .descripcion-info-informacion_conectividad {
+  color: rgba(255,255,255,0.8);
+}
+.iconNav,
+#spanIndicador,
+#salir,
+.iconNav.selec a {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+.iconNav.selec {
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
+}
+#spanIndicador {
+  -webkit-animation-delay: .7s;
+  animation-delay: .7s;
+  -webkit-animation-duration: 1.1s;
+  animation-duration: 1.1s;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#actividadesPracticas  a {
+  background-image: url(imgcssIMF/solapa-casos-practicos-gris.png);
+  background-position: center 4px;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+#actividadesPracticas.iconNav a:hover,
+#actividadesPracticas.selec a {
+  background-image: url(imgcssIMF/solapa-casos-practicos-color.png);
+}
+.ios-frame .wrapper-iframe {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
+.ios-frame  .wrapper-iframe iframe {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.aulaClock {
+  display: none;
+}
+@media screen and (min-width: 72em) {
+  .aulaClock--show {
+    display: block;
+  }
+  .aulaClock__wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .aulaClock {
+    font-family: 'Droid Sans Mono', monospace;
+    width: 120px;
+    text-align: center;
+    padding: 3px 0;
+    color: #616161;
+    position: absolute;
+    top: 0;
+    left: -120px;
+  }
+  .aulaClock > div {
+    text-align: center;
+  }
+  .aulaClock__timer {
+    font-size: 26px;
+    line-height: 28px;
+    font-weight: bold;
+    padding-bottom: 4px;
+  }
+  .aulaClock__date {
+    font-size: 13px;
+    line-height: 20px;
+    transform: translateX(1px);
+  }
+  .aulaClock__timezone {
+    font-size: 10px;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+}

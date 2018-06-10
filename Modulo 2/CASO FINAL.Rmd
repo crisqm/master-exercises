@@ -1,0 +1,514 @@
+---
+title: "Caso Pŕactico Final"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+Tomaremos el dataset de aprobación de crédito bancario en https://archive.ics.uci.edu/ml/datasets/Credit+Approval . Los datos también se pueden cargar de la carpeta de contenido en  `crx.data`. La información del dataset está en https://archive.ics.uci.edu/ml/machine-learning-databases/credit-screening/crx.names y expone lo siguiente:
+
+      1. Title: Credit Approval
+
+      2. Sources: 
+          (confidential)
+          Submitted by quinlan@cs.su.oz.au
+      
+      3.  Past Usage:
+      
+          See Quinlan,
+          * "Simplifying decision trees", Int J Man-Machine Studies 27,
+            Dec 1987, pp. 221-234.
+          * "C4.5: Programs for Machine Learning", Morgan Kaufmann, Oct 1992
+        
+      4.  Relevant Information:
+      
+          This file concerns credit card applications.  All attribute names
+          and values have been changed to meaningless symbols to protect
+          confidentiality of the data.
+        
+          This dataset is interesting because there is a good mix of
+          attributes -- continuous, nominal with small numbers of
+          values, and nominal with larger numbers of values.  There
+          are also a few missing values.
+        
+      5.  Number of Instances: 690
+      
+      6.  Number of Attributes: 15 + class attribute
+      
+      7.  Attribute Information:
+      
+          A1:	b, a.
+          A2:	continuous.
+          A3:	continuous.
+          A4:	u, y, l, t.
+          A5:	g, p, gg.
+          A6:	c, d, cc, i, j, k, m, r, q, w, x, e, aa, ff.
+          A7:	v, h, bb, j, n, z, dd, ff, o.
+          A8:	continuous.
+          A9:	t, f.
+          A10:	t, f.
+          A11:	continuous.
+          A12:	t, f.
+          A13:	g, p, s.
+          A14:	continuous.
+          A15:	continuous.
+          A16: +,-         (class attribute)
+      
+      8.  Missing Attribute Values:
+          37 cases (5%) have one or more missing values.  The missing
+          values from particular attributes are:
+      
+          A1:  12
+          A2:  12
+          A4:   6
+          A5:   6
+          A6:   9
+          A7:   9
+          A14: 13
+      
+      9.  Class Distribution
+        
+          +: 307 (44.5%)
+          -: 383 (55.5%)
+      
+## Actividades a realizar
+
+1. Carga los datos. Realiza una inspección por variables de la distribución de aprobación de crédito en función de cada atributo visualmente. Realiza las observaciones pertinentes. ¿ Qué variables son mejores para separar los datos?
+
+```{r}
+library(ggplot2)
+cred <- read.csv("CASO_FINAL_crx.data", header = FALSE)
+str(cred)
+
+V2 <- as.numeric(levels(cred$V2))[cred$V2] #convierto en numérica la variable 2
+V14 <- as.numeric(levels(cred$V14))[cred$V14] #convierto en numérica la variable 14
+
+histograma <- function(x) {
+  min <- min(x, na.rm = TRUE)
+  max <- max(x, na.rm = TRUE)
+  media <- mean(x, na.rm = TRUE)
+  mediana <- median(x, na.rm = TRUE)
+  dt <- sd(x, na.rm = TRUE)
+  
+  hist(x, freq = F)
+
+  lines(density(x, na.rm = TRUE),
+        lwd = 2,
+        col = "chocolate3")
+  
+  abline(v = media,
+         col = "royalblue",
+         lwd = 2)
+  
+  abline(v = mediana,
+         col = "red",
+         lwd = 2)
+  
+  legend(
+    x = "topright",
+    c("Density plot", "Mean", "Median"),
+    col = c("chocolate3", "royalblue", "red"),
+    lwd = c(2, 2, 2)
+  )
+}
+```
+
+```{r}
+#plot(cred$V1, cred$V16)
+
+tbl = table(cred$V1, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V1, y=V16)) +
+#      geom_bar(stat="identity")
+
+barplot(tbl)
+
+```
+El resultado de este chi square parece muy bueno: p-value = 0.3181
+En el gráfico de barras se ve una mayor frecuencia sobre la categoría b
+
+
+```{r}
+#plot(V2, cred$V16)
+
+tbl = table(V2, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+
+#ggplot(data=cred, aes(x=V2, y=V16)) +
+#      geom_histogram(stat="identity")
+
+#ggplot(data=cred, aes(x=V2, y=V16)) +
+#      geom_boxplot()
+
+histograma(V2)
+
+boxplot(V2)
+
+shapiro.test(V2)
+```
+El resultado del test chi es p-value = 0.1184 aunque con un warning. Parece que son variables dependientes.
+Para el histograma se puede observar una mayor acumulación para valores más bajos de V2.
+El boxplot muestra que todos los valores son atípicos.
+
+```{r}
+#plot(cred$V3, cred$V16)
+
+tbl = table(cred$V3, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V3, y=V16)) +
+#      geom_histogram(stat="identity")
+
+#ggplot(data=cred, aes(x=V3, y=V16)) +
+#      geom_boxplot()
+
+histograma(cred$V3)
+
+boxplot(cred$V3)
+
+shapiro.test(cred$V3)
+```
+El resultado del test Chi da también bien con un p-value = 0.1154 aunque con un warning. Parece que son variables dependientes.
+En el histograma se aprecia una mayor acumulación para valores más bajos de V3.
+El boxplot muestra que todos los valores son atípicos.
+
+
+```{r}
+#plot(cred$V4, cred$V16)
+
+tbl = table(cred$V4, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V4, y=V16)) +
+#      geom_bar(stat="identity")
+
+barplot(tbl)
+```
+El resultado del test Chi para V4 es p-value = 4.816e-06 con lo que es un valor muy bajo.
+En el gráfico de barras se aprecia una mayor frecuencia para la categoría u de V4.
+
+
+```{r}
+#plot(cred$V5, cred$V16)
+
+tbl = table(cred$V5, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V5, y=V16)) +
+#      geom_bar(stat="identity")
+barplot(tbl)
+```
+El test Chi square para V5 es también muy malo: p-value = 4.816e-06
+En el gráfico de barras se aprecia una mayor frecuencia en la categoría g de V5.
+
+```{r}
+#plot(cred$V6, cred$V16)
+
+tbl = table(cred$V6, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V6, y=V16)) +
+#      geom_bar(stat="identity")
+barplot(tbl)
+```
+El test Chi para V6 nos da un p-valor muy bajo: 9.921e-15 warning incluido.
+En el gráfico de barras puede verse que las frecuencias de las categorías de V6 son similares.
+
+```{r}
+#plot(cred$V7, cred$V16)
+
+tbl = table(cred$V7, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V7, y=V16)) +
+#      geom_bar(stat="identity")
+barplot(tbl)
+```
+El p-valor para V7 en chi square es muy bajo también: 9.093e-07
+En el gráfico de barras se puede apreciar una mayor frecuencia para la categoría v de V7
+
+
+```{r}
+#plot(cred$V8, cred$V16)
+
+tbl = table(cred$V8, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V8, y=V16)) +
+#      geom_histogram(stat="identity")
+
+#ggplot(data=cred, aes(x=V8, y=V16)) +
+#      geom_boxplot()
+
+histograma(cred$V8)
+
+boxplot(cred$V8)
+
+shapiro.test(cred$V8)
+```
+El chi square para V8 es malo: p-value = 6.17e-06
+En el histograma se ve una mayor acumulación para valores bajos de V8.
+El boxplot muestra que todos lo valores son atípicos.
+
+```{r}
+#plot(cred$V9, cred$V16)
+
+tbl = table(cred$V9, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V9, y=V16)) +
+#      geom_bar(stat="identity")
+barplot(tbl)
+```
+Para V9 el chi square es muy malo: p-value < 2.2e-16
+El gráfico de barras muestra una mayor frecuencia de denegaciones en la categoría f y una mayor frecuencia de aprobaciones para la categoría t de V9.
+
+```{r}
+#plot(cred$V10, cred$V16)
+
+tbl = table(cred$V10, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V10, y=V16)) +
+#      geom_bar(stat="identity")
+barplot(tbl)
+```
+Para V10 el chi square es muy malo: p-value < 2.2e-16
+En el gráfico de barras se observa una frecuencia mayor de denegaciones para la categoría f y una mayor frecuencia de aprobaciones para la categoría t.
+
+```{r}
+#plot(cred$V11, cred$V16)
+
+tbl = table(cred$V11, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V11, y=V16)) +
+#      geom_histogram(stat="identity")
+
+#ggplot(data=cred, aes(x=V11, y=V16)) +
+#      geom_boxplot()
+
+histograma(cred$V11)
+
+boxplot(cred$V11)
+
+shapiro.test(cred$V11)
+```
+Para V11 el chi square es muy malo: p-value < 2.2e-16
+El histograma muestra una acumulación mayor para valores de V11 cercanos a 0.
+El boxplot muestra que todos los valores son atípicos.
+
+
+```{r}
+#plot(cred$V12, cred$V16)
+
+tbl = table(cred$V12, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V12, y=V16)) +
+#      geom_bar(stat="identity")
+
+barplot(tbl)
+```
+Para V12 el p-valor es muy bueno p-value = 0.4509. Parece que las variables son dependientes.
+El gráfico de barras muestra una frecuencia de denegaciones ligeramente superior para la categoría f de V12.
+
+
+```{r}
+#plot(cred$V13, cred$V16)
+
+tbl = table(cred$V13, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V13, y=V16)) +
+#      geom_bar(stat="identity")
+barplot(tbl)
+```
+Para V13 el chi square no es muy bueno: p-value = 0.01009
+El gráfico de barras muestra una mayor frecuencia de aprobaciones y denegaciones para la categoría g de V13.
+
+
+```{r}
+#plot(cred$V14, cred$V16)
+
+tbl = table(cred$V14, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V14, y=V16)) +
+#      geom_bar(stat="identity")
+barplot(tbl)
+```
+Para V14 el chi square no sale muy bien: p-value = 0.006377. 
+El gráfico de barras muestra frecuencias similares de categorías de V14.
+
+
+```{r}
+#plot(cred$V15, cred$V16)
+
+tbl = table(cred$V15, cred$V16)
+tbl
+
+chisq.test(tbl)
+
+#ggplot(data=cred, aes(x=V15, y=V16)) +
+#      geom_histogram(stat="identity")
+
+#ggplot(data=cred, aes(x=V15, y=V16)) +
+#      geom_boxplot()
+
+histograma(cred$V15)
+
+boxplot(cred$V15)
+
+shapiro.test(cred$V15)
+```
+Para V15 el chi square es malo: p-value = 0.0007081
+El histograma para esta variable nos dice que hay mayor acumulación para V15 = 0.
+El boxplot muestra que todos los valores son atípicos.
+
+
+Atendiendo al resultado de los test Chi Square, las variables V1, V2, V3 y V12 parece que son dependientes y el resto independientes. 
+
+No parece que ninguna variable siga una distribución normal a juzgar por los histogramas presentados.
+
+
+
+2. Prepara el dataset convenientemente e imputa los valores faltantes usando la librería `missForest`
+```{r}
+cred$V1[cred$V1 == "?"] <- NA
+cred$V2 <- V2
+cred$V2[cred$V2 == "?"] <- NA
+cred$V4[cred$V4 == "?"] <- NA
+cred$V5[cred$V5 == "?"] <- NA
+cred$V6[cred$V6 == "?"] <- NA
+cred$V7[cred$V7 == "?"] <- NA
+cred$V14 <- V14
+cred$V14[cred$V14 == "?"] <- NA
+```
+Se asigna el valor NA a los valores faltantes
+
+```{r}
+library(missForest)
+cred.imp <- missForest(cred, maxiter = 20,ntree = 500,variablewise = T)
+cred.imp$OOBerror
+apply(cred,2,var,na.rm=TRUE)
+apply(is.na(cred.imp$ximp),2,sum)
+cred <- cred.imp$ximp
+str(cred)
+```
+
+3. Divide el dataset tomando las primeras 590 instancias como train y las últimas 100 como test.
+
+```{r}
+cred$V16 <- as.numeric(cred$V16) - 1
+
+X <- cred[,1:15]
+dim(X)
+y <- cred$V16
+unique(y)
+
+
+X_train <- X[1:590,]
+y_train <- y[1:590]
+X_test <- X[591:690,]
+y_test <- y[591:690]
+```
+
+4. Entrena un modelo de regresión logística con regularización Ridge y Lasso en train seleccionando el que mejor **AUC** tenga. Da las métricas en test.
+
+## Regresión logística con regularización Ridge
+
+```{r}
+X_train <- data.matrix(X_train)
+X_test <- data.matrix(X_test)
+
+library(glmnet)
+set.seed(999)
+cv.ridge <- cv.glmnet(X_train, y_train, family='binomial', alpha=0, parallel=TRUE, standardize=TRUE, type.measure='auc')
+# Resultados
+plot(cv.ridge)
+#este es el mejor valor de lambda
+cv.ridge$lambda.min
+#este es el valor del error que se estima para ese valor lambda mínimo dado en MSE
+max(cv.ridge$cvm)
+```
+Vemos los coeficientes
+```{r}
+coef(cv.ridge, s=cv.ridge$lambda.min)
+```
+Damos métricas en el test
+```{r}
+y_pred <- as.numeric(predict.glmnet(cv.ridge$glmnet.fit, newx=X_test, s=cv.ridge$lambda.min)>.5)
+library(caret)
+library(ggplot2)
+library(lattice)
+library(e1071)
+
+confusionMatrix(as.factor(y_test), as.factor(y_pred), mode="everything")
+```
+
+## Regresión logística con regularización Lasso
+
+```{r}
+library(glmnet)
+set.seed(999)
+cv.lasso <- cv.glmnet(X_train, y_train, family='binomial', alpha=1, parallel=TRUE, standardize=TRUE, type.measure='auc')
+# Resultados
+plot(cv.lasso)
+#este es el mejor valor de lambda
+cv.lasso$lambda.min
+#este es el valor del error que se estima para ese valor lambda mínimo dado en MSE
+max(cv.lasso$cvm)
+```
+
+Vemos los coeficientes
+
+```{r}
+coef(cv.lasso, s=cv.lasso$lambda.min)
+```
+
+```{r}
+y_pred <- as.numeric(predict.glmnet(cv.lasso$glmnet.fit, newx=X_test, s=cv.lasso$lambda.min)>.5)
+library(caret)
+library(ggplot2)
+library(lattice)
+library(e1071)
+confusionMatrix(as.factor(y_test), as.factor(y_pred), mode="everything")
+```
+
+5. Aporta los *log odds* de las variables predictoras sobre la variable objetivo.
+
+
+6. Si por cada verdadero positivo ganamos 100e y por cada falso positivo perdemos 20e. ¿ Qué rentabilidad aporta aplicar este modelo?
+

@@ -1,0 +1,58 @@
+---
+title: "ACTIVIDAD 1 UD 1 SOLUCIONES"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+## Apartado A
+
+```{r}
+X <- c(1,2,3,1,4,5,2)
+Y <- c(0,3,2,0,5,9,3)
+M <- data.frame(X,Y)
+M
+M <- unique(M)
+M
+rownames(M) <- c("CA","SE","MA","BA","VA")
+M
+M$Z <- (M$X+M$Y)/M$X
+M
+M$costa <- factor(c("C","I","I","C","C"))
+M
+lapply(M,class)
+M
+M[rownames(M)=="BA","X"] <-2
+M
+
+```
+
+
+
+## Apartado B
+
+```{r}
+url <- 'http://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data'
+dat <- read.csv(url,na.strings = "?",header=FALSE)
+write.csv(dat, file='imports-85.csv')
+View(dat)
+summary(dat)
+dim(dat)
+
+factores<- which(sapply(dat,class)=="factor")
+for (i in 1:length(factores)){
+  print(unique(dat[,i]))
+}
+
+apply(is.na(dat),2,sum)/nrow(dat)*100
+
+dat$V1 <- dat$V1+3
+dat$V1
+
+tapply(dat$V1, dat$V6, mean)
+
+head(dat)
+dat[(dat$V3=="audi")&(dat$V6=="four")&(dat$V13<55),]
+```
+

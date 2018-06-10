@@ -1,0 +1,82 @@
+---
+title: "ACTIVIDAD 2 UD 2 SOLUCIONES"
+output:
+  html_document: default
+  html_notebook: default
+  pdf_document: default
+---
+
+Carga la librería
+```{r}
+# install.packages("titanic")
+library(titanic)
+data("titanic_train")
+df <- titanic_train
+head(df)
+str(df)
+```
+
+```{r}
+summary(df)
+```
+```{r}
+df[c("Pclass","SibSp","Parch")] <- lapply(df[c("Pclass","SibSp","Parch")],ordered)
+df[c("Sex","Cabin","Ticket","Name","Embarked","Survived")] <- lapply(df[c("Sex","Cabin","Ticket","Name","Embarked","Survived")],factor)
+summary(df)
+str(df)
+```
+
+Representamos Edad contra Tarifa en un scatterplot
+
+```{r}
+library(ggplot2)
+qplot(Age, Fare, data=df)
+qplot(Age, Fare, data=df, colour=Pclass)
+```
+
+```{r}
+qplot(Age, Fare, data=df, colour=Pclass, facets=~Sex+Embarked)
+qplot(Age, Fare, data=df, colour=Pclass, facets=Sex~Embarked)
+```
+```{r}
+ggplot(df, aes(x=Age, y=Fare)) + geom_point()
+ggplot(df, aes(x=Age, y=Fare)) + geom_hex()
+ggplot(df, aes(x=Age, y=Fare)) + geom_smooth()
+ggplot(df, aes(x=Age, y=Fare)) + geom_line()
+ggplot(df, aes(x=Age, y=Fare)) + geom_density2d()
+```
+```{r}
+ggplot(df, aes(Sex, Age)) + geom_boxplot()
+ggplot(df, aes(Pclass, fill=Sex))+geom_bar()
+ggplot(df, aes(Pclass, fill=Survived))+geom_bar()
+```
+```{r}
+#aquí se observan los porcentajes distintos
+ggplot(df, aes(Sex,Survived))+geom_bar(stat = "identity")
+
+```
+
+```{r}
+#los hombres sobreviven mucho menos que las mujeres
+qplot(Survived,data=df,facets= ~ Sex)
+```
+```{r}
+#la supervivencia es mayor en clase 1  y dramáticamente baja en la clase 3
+qplot(Survived,data=df,facets= ~ Pclass)
+```
+
+
+```{r}
+qplot(Age,data= df)+geom_histogram(bins = 50,na.rm = T)
+```
+
+```{r}
+library(dplyr)
+df$DummySurvived <- as.numeric(df$Survived) -1
+columnas <- c("Sex", "Pclass")
+df %>%
+    group_by_(.dots = columnas) %>%
+    summarise(Media = mean(DummySurvived), Mediana=median(DummySurvived),  Conteo=n() )
+```
+Los hombres de tercera clase lo tenían bastante difícil para sobrevivir, sin embargo las mujeres de primera y segunda clase tenían una propensión a la supervivencia muy alta. Hay bastante muestra de cada subcategoría, abundando más los casos de clase tercera.
+

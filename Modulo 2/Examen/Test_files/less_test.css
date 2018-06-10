@@ -1,0 +1,508 @@
+@import "less_formato02.css";
+@import "less_alumnos.css";
+fieldset {
+  display: block;
+  text-align: left;
+  background-image: url(imgcss/azul/fondo-gris.jpg);
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  margin-bottom: 15px;
+}
+fieldset #valoracion {
+  width: 45em;
+  text-align: left;
+  height: 20px;
+  margin-left: 4px;
+}
+fieldset #valoracion #excelente {
+  background-image: url(imgcss/iconoExcelente.gif);
+  background-repeat: no-repeat;
+  float: left;
+  height: 20px;
+  width: 20px;
+}
+fieldset #valoracion #malo {
+  background-image: url(imgcss/iconoMalo.gif);
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  position: relative;
+  left: 40em;
+}
+fieldset #opciones,
+fieldset .opciones {
+  text-align: center;
+  width: 45em;
+  height: 20px;
+  padding-left: 5px;
+  margin-left: 4px;
+}
+fieldset #opcion {
+  text-align: center;
+  height: 50px;
+  float: left;
+  display: inline;
+  clear: right;
+  margin-right: 1.3em;
+  margin-left: 1.2em;
+}
+fieldset #opcion input,
+fieldset .opcion input {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  width: 20px;
+}
+legend {
+  display: none;
+}
+fieldset label {
+  display: block;
+  padding-left: 10px;
+}
+fieldset select {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 90%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+fieldset textarea {
+  width: 500px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 95%;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  height: 80px;
+}
+#enviar {
+  text-align: center;
+}
+input.boton,
+#enviar a.boton {
+  background-color: #9f2b2f;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#ac2e33),to(#8c2529));
+  background-image: -webkit-linear-gradient(top,#ac2e33,#8c2529);
+  background-image: -moz-linear-gradient(top,#ac2e33,#8c2529);
+  background-image: -o-linear-gradient(top,#ac2e33,#8c2529);
+  background-image: linear-gradient(top,#ac2e33,#8c2529);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#ac2e33', EndColorStr='#8c2529');
+  font-weight: bold;
+  color: #FFFFFF;
+  width: 12em;
+  border: none;
+  padding: .55em 0;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+input.boton:hover,
+#enviar a.boton:hover {
+  box-shadow: rgba(0,0,0,0.26) 0 1px 5px;
+}
+input.boton:active,
+#enviar a.boton:active {
+  background: #98292d;
+  box-shadow: inset rgba(0,0,0,0.3) 0 1px 2px;
+}
+div.test fieldset {
+  background-image: url(imgcss/azul/fondo-gris.jpg);
+  background-repeat: repeat-x;
+  margin-bottom: 15px;
+  border: 1px solid #E5E5E5;
+  font-size: 110%;
+  padding: 4px;
+  display: block;
+  background-color: #fff;
+}
+div.test #numero,
+div.test .numero {
+  display: block;
+  float: left;
+  width: 2em;
+  font-weight: bold;
+  color: #666666;
+  line-height: 26px;
+  text-align: center;
+}
+.respuestas {
+  padding: 0 0 8px;
+}
+div.test #pregunta img,
+div.test .pregunta img {
+  vertical-align: top;
+}
+.pregunta {
+  padding-bottom: 8px;
+}
+.enunciado {
+  font-weight: bold;
+  padding: 5px 0 6px;
+}
+div.test #respuestas,
+div.test .respuestas {
+  clear: both;
+  padding-left: 2em;
+  display: block;
+}
+div.test #respuestas #respuesta.nose,
+div.test .respuestas .respuesta.nose {
+  font-weight: bold;
+}
+div.test #respuestas #respuesta,
+div.test .respuestas .respuesta {
+  clear: both;
+  display: block;
+  margin: 0px;
+}
+div.test #respuestas #respuesta .activada,
+div.test .respuestas .respuesta .activada {
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #993237;
+  display: block;
+  float: left;
+  width: 50em;
+  padding: 5px;
+}
+div.test #respuestas #respuesta .letra,
+div.test .respuestas .respuesta .letra {
+  width: 1.5em;
+  float: left;
+  padding: 5px 3px 3px;
+  display: block;
+}
+div.test #respuestas #respuesta .opcion,
+div.test .respuestas .respuesta .opcion {
+  float: left;
+  display: block;
+  padding-top: 4px;
+}
+div.test #respuestas #respuesta .texto,
+div.test .respuestas .respuesta .texto {
+  float: left;
+  margin: 0px;
+  padding: 5px;
+  display: block;
+  width: 50em;
+}
+#resultado {
+  background-image: url(imgcss/azul/fondo-gris.jpg);
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  min-height: 15em;
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+}
+#resultado #titResultado {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #333333;
+  margin-left: 10px;
+  margin-left: 180px;
+  padding: 20px 0;
+}
+#resultado #titResultado h1 {
+  font-size: 180%;
+  text-transform: uppercase;
+}
+#resultado #titResultado h2 {
+  font-size: 160%;
+}
+#resultado #titResultado p {
+  margin-top: 10px;
+}
+#resultado #recuerda {
+  color: #999999;
+  display: block;
+  padding-top: 1em;
+  float: left;
+}
+#cronoTest {
+  width: 94px;
+  padding: 70px 0 0 0;
+  background-color: #06F;
+  position: fixed;
+  top: 44px;
+  background-image: url(../img/suptestcrono.gif);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-color: #e4e4e4;
+}
+#cronoTest span {
+  display: block;
+  line-height: 21px;
+  background-color: #000;
+  color: #FFF;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  background-color: #303030;
+}
+#cronoTest span.timealert {
+  background-image: url(../img/cronoalerta.gif);
+}
+.cronoTestInf {
+  padding: 0 14px 11px;
+  background-image: url(../img/inftestcrono.gif);
+  background-position: 0 bottom;
+  background-repeat: no-repeat;
+  background-color: #e4e4e4;
+}
+* html body {
+  overflow: hidden;
+}
+#cronoTest {
+  position: absolute;
+  top: 144px;
+  left: 8px;
+  left: 100%;
+  margin-left: -108px;
+  opacity: 0.8;
+}
+html>body #cronoTest {
+  position: fixed;
+}
+#todo2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  left: 0;
+}
+html>body #todo2 {
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+#respuesta label {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.respuesta label {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+#cronoTest {
+  border-radius: 4px;
+  padding-top: 120px;
+  background-color: #aaa;
+  background-image: url(../img/cronoAnimado.gif);
+  background-repeat: no-repeat;
+  background-position: center 21px;
+}
+.cronoTestInf {
+  padding: 0;
+  background-image: none;
+}
+#cronoTest span {
+  line-height: 46px;
+  font-size: 16px;
+  border-radius: 0 0 4px 4px;
+  padding-top: 2px;
+}
+@media (min-width: 992px) {
+  .centrarCronoTest {
+    position: fixed;
+    width: 68em;
+    top: 0;
+    left: 50%;
+    margin-left: -34em;
+  }
+  #cronoTest {
+    position: absolute !important;
+    margin-left: 16px;
+    width: 133px;
+  }
+  #cronoTest span {
+    font-size: 21px;
+  }
+}
+@-webkit-keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-1000px);
+    -ms-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+#cronoTest {
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-delay: .5s;
+  animation-delay: .5s;
+}
+.respuestaMarcada {
+  background-color: #ddd;
+  border-radius: 1px;
+}
+div.test fieldset {
+  position: relative;
+}
+.infoCorreccion {
+  text-indent: -9999em;
+  position: absolute;
+  top: 0px;
+  left: -6px;
+  width: 35px;
+  height: 30px;
+  background-image: url(imgcss/iCorrecionTest.png);
+  background-repeat: no-repeat;
+}
+.testIncorrecto {
+  background-position: 0 0;
+}
+.testCorrecto {
+  background-position: 0 -30px;
+}
+@media only screen and (min-width: 838px) {
+  .infoCorreccion {
+    left: -42px;
+  }
+}
+.msg-test {
+  font: 16px/22px Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+  position: relative;
+  margin: 8px 0 18px;
+  padding: 14px 44px 14px 14px;
+  background-color: #ebf7fd;
+  color: #2d7091;
+  border-radius: 1px;
+  display: none;
+}
+.msg-test-close {
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: -2px;
+  display: block;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  cursor: pointer;
+  color: #2d7091;
+  opacity: .7;
+  transition: all .5s;
+}
+.msg-test-close:hover {
+  opacity: 1;
+}
+.msg-test p {
+  margin-top: 0;
+}
+.msg-test > :last-child {
+  margin-bottom: 0;
+}
+.msg-test-error .msg-test-close {
+  color: #c82600;
+}
+.msg-test-error {
+  background-color: #ffe9e8;
+  color: #c82600;
+}
+.msg-test-ok .msg-test-close {
+  color: #659f13;
+}
+.msg-test-ok {
+  background-color: #f2fae3;
+  color: #659f13;
+}
+.feedback {
+  position: relative;
+  padding: 18px 18px 18px 80px;
+  margin: 21px 12px 9px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #f6f6f6;
+  background-image: url(../img/iFeedback.png);
+  background-repeat: no-repeat;
+  background-position: 22px 13px;
+  clear: both;
+  font-size: 13px;
+  line-height: 18px;
+}
+.feedback p {
+  margin-bottom: 15px;
+}
+.feedback *:last-child {
+  margin-bottom: 0;
+}
+#pregunta {
+  margin-left: 27px;
+  margin-top: 5px;
+}
+#pregunta ul {
+  margin: 4px 0 11px 31px;
+}
+@media only screen and (min-width: 838px) {
+  .infoCorreccion {
+    left: -42px;
+  }
+}
+#resultado #recuerda {
+  margin-bottom: 12px;
+}
+html>body #VistaImpresionTest {
+  margin-right: 18px;
+}
+#VistaImpresionTest img {
+  border: none;
+}
+#VistaImpresionTest {
+  margin-right: 10px;
+  margin-top: -14px;
+  float: right;
+}
+html>body .borrar {
+  margin-top: 0px;
+}
+@media only screen and (min-width: 838px) {
+  .infoCorreccion {
+    left: -42px;
+  }
+}

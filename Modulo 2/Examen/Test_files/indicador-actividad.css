@@ -1,0 +1,146 @@
+@charset "utf-8";
+/* CSS Document */
+#indicador_nuevo {	position: relative;  font:normal 12px/15px Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif; color:#fff; }
+#spanIndicador { padding:0 8px 9px; display:block;}
+#indicadorConexion { display:block; height:36px; float:left; width:80px; background-repeat:no-repeat; background-position:67px 10px; }
+#spanNumCurso, #spanNumTotal { float:left; width:83px; text-align:right;}
+#indicadorDerecha { width:50px; height:71px; float:right; background-repeat:no-repeat; background-position: center center;}
+
+.iconEstadoVerde { background-image: url( imgcss/iconEstadoVerde.png);}
+.iconEstadoGris { background-image: url( imgcss/iconEstadoGris.png);}
+.iconEstadoRojo { background-image: url( imgcss/iconEstadoRojo.png);}
+
+.iconTutorDisponible { background-image: url( imgcss/tutordisponible.png);}
+#indicadorDerecha.iconTutorNoDisponible { background-image: url( imgcss/tutornodisponible.png); background-position: center 0;}
+.iconTutorTrabajando { background-image: url(imgcss/tutortrabajando.png);} 
+.notice-indicador {display: none; height:71px; width:137px; position:absolute; z-index:9; margin:0 8px 9px; top:0; text-align:left;}
+.notice-indicador div {  padding:12px 8px 0 62px;}
+
+#nuevaTutoria {
+	background: #8457A2 url(imgcss/iconTutoriaResuelta.png) no-repeat 8px 20px;
+}
+#tutorDisponible {
+	background:#019dac url(imgcss/tutordisponible.png) no-repeat 8px 0;
+}
+#newClassmate {
+	background-repeat: no-repeat;
+	background-position: 13px 18px;
+	background-image: url(imgcss/iconNewClassmate.png);
+	background-color: #74ba29;
+}
+.box-actionCommunications { background-color:#013f54; display: none; height:71px; width:137px; position:absolute; z-index:9; margin:0 8px 9px; top:0; text-align:left;}
+
+#spNumCurso, #spNumTotal { float:left; display:block; text-align:right; width:19px; margin-right:4px;}
+#sptxtTotal, #sptxtCurso { display:block; float:left; text-align:left; vertical-align:middle;	
+  width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#spanNumCurso, #spanNumTotal { display:block; position:absolute; width:135px; } 
+#spanNumCurso {  bottom:28px;}
+#spanNumTotal {  bottom:12px;}
+
+/* Acction communications */
+
+.box-actionCommunications button { outline:none;}
+
+.state-actionCommunications { opacity:.7; text-align:center;padding:19px 0 3px; line-height:13px; font-size:10px; text-transform:uppercase;}
+#llamadaEntrante .state-actionCommunications { padding:1px 0;}
+
+.name-actionCommunications { text-align:center;
+ white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width:100%;
+}
+.close-actionCommunications { position:absolute; z-index:10; top:0; right:0; width:30px; height:30px; text-align:center; background-color:transparent; border:none; color:#fff; font-size:24px; cursor:pointer; opacity:.8; transition:all .3s;}
+.close-actionCommunications:hover { opacity:1;}
+.close-actionCommunications:active { background-color:rgba(255,255,255,0.22);}
+
+.panel-actionCommunications { font-size:0; padding-top:5px;}
+.btn-actionCommunications {
+	font-size:13px;
+	font-weight:500;
+	border:none;
+	height:35px;
+	text-shadow:rgba(0,0,0,0.25) 1px 1px;
+	width:68px;
+	padding:0;
+	font-weight:600;
+	color:#fff;
+	border-radius:2px;
+	box-shadow:rgba(0,0,0,0.3) 0 2px 3px, inset rgba(0,0,0,0.31) 0 -1px 2px;
+	cursor:pointer;
+	transition:background .3s;
+}
+.btn-actionCommunications:active { box-shadow:inset rgba(0,0,0,0.35) 0 1px 5px;}
+.cancel-actionCommunications { background-color:#f80207;}
+.accept-actionCommunications { background-color:#8dcf00; margin:0 1px 0 0;}
+.cancel-actionCommunications:hover {
+	background-color: #FF593B;
+}
+.accept-actionCommunications:hover {
+	background-color: #A3E020;
+}
+
+/*  y esto¿? */ 
+#scrollbar1 { z-index:2;}
+
+/* borrar 
+#indicador_nuevo {
+	height: 80px;
+	width: 153px;
+	margin: 0 auto 0;
+	padding-left:1px;
+	background-image: url('imgcss/solapas/indicador_NARANJA_NUEVA.jpg');
+}
+html, body { height:100%; margin:0; padding:0;}
+*/
+
+
+
+
+/*  boton estado de actividad */
+#indicadorConexion {
+	width:34px;
+	background-position:right 13px;
+}
+#btnEstadoAlumno {
+	position:absolute;
+	top:4px;
+	left:49px;
+	display:block;
+
+}
+
+/* adaptacion de dropit al indicador */
+.dropnav a.btn-dropnav-indicador { 
+	padding:0;
+	height:28px;
+	width:39px;
+	line-height:28px;
+	box-shadow:inset #fff 0 -1px, rgba(0,0,0,0.2) 0 1px 1px;
+	background-color:#f4f4f4;
+	border-radius:2px;
+}
+
+.dropnav a.btn-dropnav-indicador:hover { background-color:#fff;}
+.dropit-open a.btn-dropnav-indicador, .dropit-open a.btn-dropnav-indicador:hover, .dropit-open a.btn-dropnav-indicador:active {
+	background-color:#fff;
+	border-radius:2px 2px 0 0;
+	box-shadow:rgba(0,0,0,0.15) 0 -1px 1px;
+}
+	
+.dropnav a.btn-dropnav-indicador .icon_estado_comunicacion { 
+	margin-left:7px; 
+	height:27px; 
+	display:block; 
+	border-right:none;
+	margin-right:0;
+}
+.dropnav .options-dropnav.options-dropnav-indicador {
+	border:none;
+	box-shadow:rgba(0,0,0,0.15) 0 4px 4px -3px, rgba(0,0,0,0.28) 0 2px 9px;
+}
+#indicador_nuevo .dropit-submenu { display:none;}

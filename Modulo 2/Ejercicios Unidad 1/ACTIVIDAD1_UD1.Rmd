@@ -1,0 +1,86 @@
+---
+title: "ACTIVIDAD 1 UD 1"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+## Actividad de tratamiento de datos y carga de R
+
+
+### Apartado A
+
+- Crea un dataframe a partir de los vectores
+```{r}
+X <- c(1,2,3,1,4,5,2)
+Y <- c(0,3,2,0,5,9,3)
+```
+- Elimina los duplicados usando una función de R adecuada `help(unique)`
+- Pon nombre a las filas con nombres "CA","SE","MA","BA","VA"
+- Crea una nueva columna Z que sea la suma de las dos primeras dividida por la primera
+- Cambia el valor X de la provincia BA por 2
+- Selecciona aquellas provincias cuyo valor Y sea menor que 4
+- Crea un factor que indique si es costera o no la ciudad (C o I) y añádelo como columna
+
+```{r}
+M <- data.frame(X,Y)
+M
+
+M <- unique(M)
+
+rownames(M) <- c("CA","SE","MA","BA","VA")
+M
+
+M$Z <- (M$X + M$Y) / M$X
+M
+
+M[rownames(M)=="BA","X"] <- 2
+M
+
+M[M$Y<4,]
+
+M$costa <- factor(c("I","I","I","C","C"))
+M
+```
+
+
+
+### Apartado B
+
+- Carga el dataset en la url http://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data indicando que los valores faltantes son "?"
+`url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data"`. Si la url no funcionara, importar el archivo desde `imports-85.csv`.
+- Haz un sumario del dataframe.
+- ¿Qué dimensión tiene el dataframe?
+- Inspecciona los datos, ¿de qué clase es cada tipo? Extrae los distintos valores que toman los factores.
+- Indica la proporción de  valores faltantes por columna usando sum e is.na y un apply (usa nrow).
+- Edita la primera columna llevándola al rango 0-5.
+- Da una media de los valores de la primera columna respecto a la columna de número de puertas del coche.
+- Extrae los coches audi que son cuatro puertas con valor V13 menor que 55
+
+
+```{R}
+url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data"
+
+dat <- read.csv(url,na.strings = "?",header=FALSE)
+
+summary(dat)
+
+dim(dat)
+
+help(sapply)
+
+factores<- which(sapply(dat,class)=="factor")
+for (i in 1:length(factores)){
+  print(unique(dat[,i]))
+}
+
+apply(is.na(dat),2,sum)/nrow(dat)*100
+
+dat$V1 <- dat$V1+3
+dat$V1
+
+tapply(dat$V1, dat$V6, mean)
+
+dat[dat$V3 == "audi" & dat$V6 == "four" & dat$V13 < 55,]
+```

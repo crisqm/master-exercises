@@ -1,0 +1,40 @@
+<?xml version="1.0"  encoding="ISO-8859-1" ?> 
+<catalogo>
+	<Libro isbn="0-596-00128-2">
+		<titulo>Python y XML</titulo>
+		<fecha>Diciembre 2001</fecha>
+		<autor>Pepito Perez</autor>
+	</Libro>
+	<Libro isbn="0-596-15810-6">
+		<titulo>Programación avanzada de XML</titulo>
+		<fecha>Octubre 2010</fecha>
+		<autor>Juan Garcia</autor>
+	</Libro>
+	<Libro isbn="0-596-15806-8">
+		<titulo>Aprendiendo Java</titulo>
+		<fecha>Septiembre 2009</fecha>
+		<autor>Juan Garcia</autor>
+	</Libro>
+	<Libro isbn="9781788621878">
+		<titulo>R Data Analysis Projects</titulo>
+		<fecha>Noviembre 2017</fecha>
+		<autor>Gopi Subramanian</autor>
+	</Libro>
+	<Libro isbn="9781788290678">
+		<titulo>Statistics for Data Science</titulo>
+		<fecha>Noviembre 2017</fecha>
+		<autor>James D. Miller</autor>
+	</Libro>
+	<Libro isbn="9781783982608">
+		<titulo>Mastering MongoDB 3.x</titulo>
+		<fecha>Noviembre 2017</fecha>
+		<autor>Alex Giamas</autor>
+	</Libro>	
+	<Libro isbn="9781787286382">
+		<titulo>Scikit-learn Cookbook - Second Edition</titulo>
+		<fecha>Noviembre 2017</fecha>
+		<autor>Julian Avila</autor>
+	</Libro>	
+</catalogo>
+
+	

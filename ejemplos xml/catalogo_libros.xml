@@ -1,0 +1,17 @@
+<catalogo>
+	<Libro isbn="0-596-00128-2">
+		<titulo>Python y XML</titulo>
+		<fecha>Diciembre 2001</fecha>
+		<autor>Pepito Perez</autor>
+	</Libro>
+	<Libro isbn="0-596-15810-6">
+		<titulo>Programacion avanzada de XML</titulo>
+		<fecha>Octubre 2010</fecha>
+		<autor>Juan Garcia</autor>
+	</Libro>
+	<Libro isbn="0-596-15806-8">
+		<titulo>Aprendiendo Java</titulo>
+		<fecha>Septiembre 2009</fecha>
+		<autor>Juan Garcia</autor>
+	</Libro>
+</catalogo>

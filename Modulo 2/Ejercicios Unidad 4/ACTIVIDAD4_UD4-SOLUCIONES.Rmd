@@ -1,0 +1,164 @@
+---
+title: "ACTIVIDAD 4 UD 4 SOLUCIONES"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+  word_document: default
+---
+## Apartado A
+
+Cargamos los datos de la red
+```{r}
+# url <- "https://onlinecourses.science.psu.edu/stat501/sites/onlinecourses.science.psu.edu.stat501/files/data/iqsize.txt"
+# aux <- read.csv(url,sep="\t")
+# write.csv(aux, 'iqphys.csv',row.names = F)
+```
+Leemos de la carpeta el csv:
+```{r}
+df <- read.csv('ACTIVIDAD4_UD4_iqphys.csv')
+df
+```
+**¿ Depende el coeficiente intelectual de medidas físicas ?**
+
+Descripción de los datos:
+
+- Response (y): Performance IQ scores (PIQ)   from the revised Wechsler Adult Intelligence Scale. This variable served as the investigator's measure of the individual's  intelligence.
+- Potential predictor (x1): Brain size based on the count obtained from MRI scans (given as count/10,000).
+- Potential predictor (x2): Height in inches.
+- Potential predictor (x3): Weight in pounds.
+
+Pintamos los pares. No observamos una correlación fuerte de PIQ respecto a Height ó Weight, sin embargo sí cierta evolución respecto a Brain
+```{r}
+pairs(df)
+```
+
+Entrenamos un modelo lineal
+```{r}
+mod <- lm(PIQ~Brain+Height+Weight,data=df)
+mod
+summary(mod)
+```
+El modelo lineal confirma lo que vemos en el gráfico. Sólo Brain es un predictor significativo, siguiente Height con poca significación. El modelo tiene un R² pobre, lo que significa que no queda bien explicado el PIQ a través de los predictores.
+
+De hecho el error standard en residuos es de 19.79 y la desviación típica de la variable PIQ es 22.59, lo que significa que hay una variación muy fuerte en los residuos respecto a la variable objetivo:
+```{r}
+sd(df$PIQ)
+sd(mod$residuals)
+```
+
+Sólo parece significativamente influyente el tamaño cerebral y un poco la altura sólo el 29% de la variabilidad del coeficiente intelectual queda
+explicada a través de las variables predictoras.
+
+Usaremos la expresión de R^2 ajustado para observar si introducir coeficientes
+polinómicos mejora la explicación:
+```{r}
+summary(lm(PIQ~Brain+I(Brain^3)+Height+Weight,data=df))
+```
+Empeora la capacidad explicativa
+
+Eliminamos la variable peso de la explicación:
+```{r}
+mod_red <- lm(PIQ~Brain+Height,data=df)
+summary(mod_red)
+confint(mod_red)
+```
+
+
+
+Si entra una persona con 95 de tamaño cerebral  y 70 de altura su
+predicción en intervalo de confianza es:
+```{r}
+newdata <- data.frame(Brain=95,Height=70)
+predict(mod_red, newdata, interval="predict")
+```
+
+Observamos que el tamaño del intervalo de confianza es muy amplio. Esto es porque hay pocas muestras y el predictor es malo.
+
+Pintamos los residuos para confirmar que el predictor está bien diseñado:
+```{r}
+mod_red$residuals
+
+
+par(mfrow=c(1,2))
+hist(mod_red$residuals)
+qqnorm(mod_red$residuals)
+qqline(mod_red$residuals)
+```
+
+
+
+```{r}
+plot(mod_red)
+shapiro.test(mod_red$residuals)
+```
+Por los resultados del test de Shapiro, podemos considerar los residuos normales
+
+Hacemos un ANOVA para decidir si es mejor el modelo completo ó el reducido:
+```{r}
+anova(mod,mod_red)
+```
+
+
+El p-valor es enorme, nos quedamos con el modelo simplificado
+
+## Apartado B
+
+Cargamos los datos
+```{r}
+# install.packages("ElemStatLearn")
+library(ElemStatLearn)
+data("prostate")
+help(prostate)
+head(prostate)
+```
+Borramos la columna train
+```{r}
+prostate$train <- NULL
+head(prostate)
+```
+Entrenamos modelos extremos  y hacemos StepAIC entre ambos para seleccionar el mejor con distintas opciones de paso.
+```{r}
+fit1 <- lm(lpsa~lcavol+lweight+age+lbph+svi+lcp+gleason+pgg45,data=prostate)
+fit0 <- lm(lpsa~1,data=prostate)
+library(MASS)
+stepAIC(fit1,direction="backward")
+```
+
+
+
+
+Otra manera de escribirlo:
+```{r}
+stepAIC(fit0,direction="forward",scope=list(upper=fit1,lower=fit0))
+```
+
+
+Ejecutamos la función step bidireccional:
+```{r}
+step <- stepAIC(fit0,direction="both",scope=list(upper=fit1,lower=fit0))
+step$anova
+step$call
+```
+
+
+El AIC del modelo seleccionado es
+```{r}
+extractAIC(lm(formula = lpsa ~ lcavol + lweight + svi + lbph + age, data = prostate),scale=0)
+```
+
+Damos el sumari, los coeficiente y el ANOVA comparando modelos
+```{r}
+summary(lm(formula = lpsa ~ lcavol + lweight + svi + lbph + age, data = prostate))
+coef(step)
+anova(lm(formula = lpsa ~ lcavol + lweight + svi + lbph, data = prostate),
+      lm(formula = lpsa ~ lcavol + lweight + svi + lbph + age, data = prostate))
+```
+El anova no justifica la inclusión de la variable Age, sin embargo reduce el AIC
+
+Damos los intervalos de confianza de los coeficientes:
+```{r}
+confint(step)
+coefficients(step)
+```
+

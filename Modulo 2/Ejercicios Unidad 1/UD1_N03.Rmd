@@ -1,0 +1,161 @@
+---
+title: "UD1 N03"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+# Operaciones de descripción  y agrupación sobre tablas
+
+# Operaciones agregantes
+
+`apply` y `sapply` aplican una función agregante por fila ó columna
+
+```{r}
+A <- array(1:20,dim=c(4,5))
+A
+
+help(apply)
+apply(A,1,sum)
+apply(A,2,max)
+apply(A,1,is.vector)
+```
+
+
+```{r}
+data(cars) #carga el dataset cars
+help(cars) #descripción del dataset
+cars
+dim(cars) #dimensión de cars
+summary(cars) #sumario express del mismo
+help(sapply) #ayuda sobre sapply
+sapply(cars,class) #devuelve la clase de cada columna
+sapply(cars,log) #devuelve el logaritmo de cada columna
+```
+
+`tapply`hace también aplicación agregada pero sobre listas
+```{r}
+help(tapply)
+hijos<-c(1,3,2,2,3,5,3,2,1,2,3,1,2,4,1,0)
+prov<-c("lu","co","lu","po","co","or","co","lu","lu","po","co","or","co","co","lu","po")
+provf<-factor(prov)
+tapply(hijos,provf,mean) #hace la media por categorías relacionando las listas hijoas y provf
+```
+
+## Carga de un dataset y descripción básica
+
+Usamos las funciones `read.csv`  y `write.csv` para cargar y leer *.csv*. La herramienta de lectura tiene un sistema automático de inferencia de formato que funciona en casi todas las cargas de tablas.
+
+```{r}
+data()
+data("USArrests") #carga un dataset del repositorio de R
+USArrests
+
+write.csv(USArrests,"USArrests.csv") #escribe el dataset en .csv
+write.csv(USArrests,"USArrests.csv",sep = ";") #escribe en .csv con separador ;
+read.csv("USArrests.csv") #lee el dataset
+dat <- read.csv("USArrests.csv",row.names = 'X')
+dat
+```
+
+### Actividad refuerzo
+### ----------------------
+1. Carga el dataset en la url http://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data
+indicando que los valores faltantes son "?"
+2. Haz un sumario del dataframe.
+3. Qué dimensión tiene el dataframe?
+4. Inspecciona los datos, de qué clase es cada tipo? Extrae los distintos valores que toman los factores.
+5. Indica la proporción de  valores faltantes por columna usando sum e is.na y un apply (usa nrow).
+6. Edita la primera columna llevándola al rango 0-5.
+7. Da una media de los valores de la primera columna respecto a la columna de número de puertas del coche.
+8. Extrae los coches  audi que son cuatro puertas con valor V13 menor que 55
+
+### SOLUCIÓN:
+```{r}
+url <- 'http://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data'
+dat <- read.csv(url,na.strings = "?",header=FALSE)
+#View(dat) #abre una pestaña en RStudio con la tabla para verla con mayor precisión
+print("sumario")
+summary(dat)
+
+print("dimensiones")
+dim(dat)
+
+print("unique")
+unique(dat$V1) #saca los valores únicos de la columna V1
+
+#incluímos una función para ver cómo se puede hacer automáticamente este apartado. Los bucles los veremos en el siguiente notebook así como las funciones
+factores<- which(sapply(dat,class)=="factor")
+for (i in 1:length(factores)){
+  print(unique(dat[,i]))
+}
+
+print("proporcion")
+apply(is.na(dat),2,sum)/nrow(dat)*100
+
+print("columna1")
+dat$V1 <- dat$V1+3
+dat$V1
+
+tapply(dat$V1, dat$V6, mean)
+
+head(dat)
+dat[(dat$V3=="audi")&(dat$V6=="four")&(dat$V13<55),]
+```
+
+## `dplyr` aplicaciones
+
+Es una librería centrada en agrupación de datos y selección de los mismos.
+
+Las operaciones centrales que podemos realizar:
+
+1. select()	seleccionar columnas
+2. filter()	seleccionar filas
+3. group_by()	agrupar los datos por una clave, habitualmente una ó varias columnas
+4. summarise()	sumario ó agregación de los datos agrupados previamente
+5. arrange()	ordenar los datos
+6. mutate() transforma una columna
+7. join()	ensamblar dataframes
+
+Veamos con ejemplos lo que puede hacer:
+
+```{r}
+# install.packages("dplyr")
+library(dplyr)
+data("airquality")
+
+print("head")
+head(airquality)
+
+print("Temp > 70")
+filter(airquality, Temp > 70) #filtramos las filas con temperatura superior a 70
+
+print("Temp > 80 & Month > 5")
+filter(airquality, Temp > 80 & Month > 5) #igual pero añadimos la condición mes
+
+print("TempInC = (Temp - 32) * 5 / 9")
+mutate(airquality, TempInC = (Temp - 32) * 5 / 9) #transformamos una columna
+
+print("media de la temperatura ignorando valores faltantes")
+summarise(airquality, mean(Temp, na.rm = TRUE)) #calcula la media de la temperatura ignorando valores faltantes
+
+print("agrupa por mes y calcula media temperatura")
+summarise(group_by(airquality, Month), mean(Temp, na.rm = TRUE)) #agrupa por mes y calcula media temperatura
+
+print("apariciones de cada categoría de una columna")
+count(airquality, Month) #cuenta las apariciones de cada categoría de una columna
+
+print("ordena descendientemente según mes")
+arrange(airquality, desc(Month), Day) #ordena descendientemente según mes
+
+```
+Con el operador **pipe** `%>%` se pueden hacer las transformaciones anteriores en forma de secuencia, esto es una sintaxis muy cómoda para trabajar sobre las tablas
+
+```{r}
+airquality %>% 
+    filter(Month != 5) %>% 
+    group_by(Month) %>% 
+    summarise(mean(Temp, na.rm = TRUE))
+```
+
+
