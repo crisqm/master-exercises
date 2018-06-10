@@ -84,6 +84,11 @@ str(cred)
 V2 <- as.numeric(levels(cred$V2))[cred$V2] #convierto en numérica la variable 2
 V14 <- as.numeric(levels(cred$V14))[cred$V14] #convierto en numérica la variable 14
 
+cred$V2 <- V2
+cred$V14 <- V14
+
+str(cred)
+
 histograma <- function(x) {
   min <- min(x, na.rm = TRUE)
   max <- max(x, na.rm = TRUE)
@@ -115,37 +120,23 @@ histograma <- function(x) {
 ```
 
 ```{r}
-#plot(cred$V1, cred$V16)
-
 tbl = table(cred$V1, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V1, y=V16)) +
-#      geom_bar(stat="identity")
-
 barplot(tbl)
-
 ```
 El resultado de este chi square parece muy bueno: p-value = 0.3181
 En el gráfico de barras se ve una mayor frecuencia sobre la categoría b
 
 
-```{r}
-#plot(V2, cred$V16)
 
+```{r}
 tbl = table(V2, cred$V16)
 tbl
 
 chisq.test(tbl)
-
-
-#ggplot(data=cred, aes(x=V2, y=V16)) +
-#      geom_histogram(stat="identity")
-
-#ggplot(data=cred, aes(x=V2, y=V16)) +
-#      geom_boxplot()
 
 histograma(V2)
 
@@ -153,23 +144,17 @@ boxplot(V2)
 
 shapiro.test(V2)
 ```
-El resultado del test chi es p-value = 0.1184 aunque con un warning. Parece que son variables dependientes.
+El resultado del test chi es p-value = 0.1457 aunque con un warning. Parece que son variables dependientes.
 Para el histograma se puede observar una mayor acumulación para valores más bajos de V2.
 El boxplot muestra que todos los valores son atípicos.
 
-```{r}
-#plot(cred$V3, cred$V16)
 
+
+```{r}
 tbl = table(cred$V3, cred$V16)
 tbl
 
 chisq.test(tbl)
-
-#ggplot(data=cred, aes(x=V3, y=V16)) +
-#      geom_histogram(stat="identity")
-
-#ggplot(data=cred, aes(x=V3, y=V16)) +
-#      geom_boxplot()
 
 histograma(cred$V3)
 
@@ -183,15 +168,10 @@ El boxplot muestra que todos los valores son atípicos.
 
 
 ```{r}
-#plot(cred$V4, cred$V16)
-
 tbl = table(cred$V4, cred$V16)
 tbl
 
 chisq.test(tbl)
-
-#ggplot(data=cred, aes(x=V4, y=V16)) +
-#      geom_bar(stat="identity")
 
 barplot(tbl)
 ```
@@ -200,45 +180,33 @@ En el gráfico de barras se aprecia una mayor frecuencia para la categoría u de
 
 
 ```{r}
-#plot(cred$V5, cred$V16)
-
 tbl = table(cred$V5, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V5, y=V16)) +
-#      geom_bar(stat="identity")
 barplot(tbl)
 ```
 El test Chi square para V5 es también muy malo: p-value = 4.816e-06
 En el gráfico de barras se aprecia una mayor frecuencia en la categoría g de V5.
 
 ```{r}
-#plot(cred$V6, cred$V16)
-
 tbl = table(cred$V6, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V6, y=V16)) +
-#      geom_bar(stat="identity")
 barplot(tbl)
 ```
 El test Chi para V6 nos da un p-valor muy bajo: 9.921e-15 warning incluido.
 En el gráfico de barras puede verse que las frecuencias de las categorías de V6 son similares.
 
 ```{r}
-#plot(cred$V7, cred$V16)
-
 tbl = table(cred$V7, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V7, y=V16)) +
-#      geom_bar(stat="identity")
 barplot(tbl)
 ```
 El p-valor para V7 en chi square es muy bajo también: 9.093e-07
@@ -246,18 +214,10 @@ En el gráfico de barras se puede apreciar una mayor frecuencia para la categor�
 
 
 ```{r}
-#plot(cred$V8, cred$V16)
-
 tbl = table(cred$V8, cred$V16)
 tbl
 
 chisq.test(tbl)
-
-#ggplot(data=cred, aes(x=V8, y=V16)) +
-#      geom_histogram(stat="identity")
-
-#ggplot(data=cred, aes(x=V8, y=V16)) +
-#      geom_boxplot()
 
 histograma(cred$V8)
 
@@ -270,48 +230,32 @@ En el histograma se ve una mayor acumulación para valores bajos de V8.
 El boxplot muestra que todos lo valores son atípicos.
 
 ```{r}
-#plot(cred$V9, cred$V16)
-
 tbl = table(cred$V9, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V9, y=V16)) +
-#      geom_bar(stat="identity")
 barplot(tbl)
 ```
 Para V9 el chi square es muy malo: p-value < 2.2e-16
 El gráfico de barras muestra una mayor frecuencia de denegaciones en la categoría f y una mayor frecuencia de aprobaciones para la categoría t de V9.
 
 ```{r}
-#plot(cred$V10, cred$V16)
-
 tbl = table(cred$V10, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V10, y=V16)) +
-#      geom_bar(stat="identity")
 barplot(tbl)
 ```
 Para V10 el chi square es muy malo: p-value < 2.2e-16
 En el gráfico de barras se observa una frecuencia mayor de denegaciones para la categoría f y una mayor frecuencia de aprobaciones para la categoría t.
 
 ```{r}
-#plot(cred$V11, cred$V16)
-
 tbl = table(cred$V11, cred$V16)
 tbl
 
 chisq.test(tbl)
-
-#ggplot(data=cred, aes(x=V11, y=V16)) +
-#      geom_histogram(stat="identity")
-
-#ggplot(data=cred, aes(x=V11, y=V16)) +
-#      geom_boxplot()
 
 histograma(cred$V11)
 
@@ -325,15 +269,10 @@ El boxplot muestra que todos los valores son atípicos.
 
 
 ```{r}
-#plot(cred$V12, cred$V16)
-
 tbl = table(cred$V12, cred$V16)
 tbl
 
 chisq.test(tbl)
-
-#ggplot(data=cred, aes(x=V12, y=V16)) +
-#      geom_bar(stat="identity")
 
 barplot(tbl)
 ```
@@ -342,15 +281,11 @@ El gráfico de barras muestra una frecuencia de denegaciones ligeramente superio
 
 
 ```{r}
-#plot(cred$V13, cred$V16)
-
 tbl = table(cred$V13, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V13, y=V16)) +
-#      geom_bar(stat="identity")
 barplot(tbl)
 ```
 Para V13 el chi square no es muy bueno: p-value = 0.01009
@@ -358,34 +293,22 @@ El gráfico de barras muestra una mayor frecuencia de aprobaciones y denegacione
 
 
 ```{r}
-#plot(cred$V14, cred$V16)
-
 tbl = table(cred$V14, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-#ggplot(data=cred, aes(x=V14, y=V16)) +
-#      geom_bar(stat="identity")
 barplot(tbl)
 ```
-Para V14 el chi square no sale muy bien: p-value = 0.006377. 
+Para V14 el chi square no sale muy bien: p-value = 0.005489 
 El gráfico de barras muestra frecuencias similares de categorías de V14.
 
 
 ```{r}
-#plot(cred$V15, cred$V16)
-
 tbl = table(cred$V15, cred$V16)
 tbl
 
 chisq.test(tbl)
-
-#ggplot(data=cred, aes(x=V15, y=V16)) +
-#      geom_histogram(stat="identity")
-
-#ggplot(data=cred, aes(x=V15, y=V16)) +
-#      geom_boxplot()
 
 histograma(cred$V15)
 
@@ -498,6 +421,8 @@ Vemos los coeficientes
 coef(cv.lasso, s=cv.lasso$lambda.min)
 ```
 
+Damos métricas en el test
+
 ```{r}
 y_pred <- as.numeric(predict.glmnet(cv.lasso$glmnet.fit, newx=X_test, s=cv.lasso$lambda.min)>.5)
 library(caret)
@@ -509,6 +434,54 @@ confusionMatrix(as.factor(y_test), as.factor(y_pred), mode="everything")
 
 5. Aporta los *log odds* de las variables predictoras sobre la variable objetivo.
 
+Buscamos el mejor modelo
+```{r}
+fit1 <- glm(V16~., data=cred, family=binomial)
+fit0 <- glm(V16~1, data=cred, family=binomial)
+library(MASS)
+step <-stepAIC(fit0,direction="both",scope=list(upper=fit1,lower=fit0))
+mod <- glm(V16 ~ V1 + V2 + V3 + V12, data=cred, family=binomial)
+mod$coefficients
+step$residuals
+plot(predict(step),residuals(step))
+coefficients(step)
+# predecimos 1 si la probabilidad es mayor que 0.5 y 0 si es menor que 0.5 y comparamos
+y_pred <- predict(step)>.5
+head(y_pred)
+head(SAheart$chd)
+```
 
+La matriz de confusión y las métricas de error se pueden calcular. Para obtener todas las que se han dado incluir la opción `mode="everything"` . Además se obtiene intervalo de confianza para el accuracy
+```{r}
+y_pred <- as.numeric(predict(mod, subset(cred,select = -V16 ), type="response")>.5)
+y <- as.numeric(cred$V16)
+# install.packages(c("e1071", "caret", "e1071")
+library(caret)
+library(ggplot2)
+library(lattice)
+library(e1071)
+
+confusionMatrix(as.factor(y), as.factor(y_pred), mode="everything")
+
+```
+
+Observamos cómo influyen las variables en V16 a través de los coeficientes y los *log odds*
+```{r}
+coef(mod)
+exp(coef(mod))
+```
+
+Conclusiones:
+
+- Incrementar en una unidad V2 aumenta un 2% la probabilidad de concesión de crédito.
+
+- Incrementar en una unidad V3 aumenta un 8% la probabilidad de concesión de crédito.
+
+- Por cada unidad que se incrementa en V12t se incrementa un 13% la probabilidad de concesión de créditos
+
+Obtenemos un intervalo de confianza para los valores de los coeficientes:
+```{r}
+exp(confint(mod))
+```
 6. Si por cada verdadero positivo ganamos 100e y por cada falso positivo perdemos 20e. ¿ Qué rentabilidad aporta aplicar este modelo?
 
