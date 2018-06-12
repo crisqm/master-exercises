@@ -50,7 +50,7 @@ library(caret)
 library(ggplot2)
 library(lattice)
 library(e1071)
-confusionMatrix(y_test, y_pred, mode="everything")
+confusionMatrix(as.factor(y_test), as.factor(y_pred), mode="everything")
 ```
 
 ## Regresión logística con regularización Ridge
@@ -81,7 +81,7 @@ library(caret)
 library(ggplot2)
 library(lattice)
 library(e1071)
-confusionMatrix(y_test, y_pred, mode="everything")
+confusionMatrix(as.factor(y_test), as.factor(y_pred), mode="everything")
 ```
 Mejora sensiblemente la clasificación de la selección por AIC
 
@@ -114,7 +114,7 @@ library(caret)
 library(ggplot2)
 library(lattice)
 library(e1071)
-confusionMatrix(y_test, y_pred, mode="everything")
+confusionMatrix(as.factor(y_test), as.factor(y_pred), mode="everything")
 ```
 El recall de Lasso empeora.
 

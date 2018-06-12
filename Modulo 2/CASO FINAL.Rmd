@@ -78,15 +78,7 @@ Tomaremos el dataset de aprobación de crédito bancario en https://archive.ics.
 
 ```{r}
 library(ggplot2)
-cred <- read.csv("CASO_FINAL_crx.data", header = FALSE)
-str(cred)
-
-V2 <- as.numeric(levels(cred$V2))[cred$V2] #convierto en numérica la variable 2
-V14 <- as.numeric(levels(cred$V14))[cred$V14] #convierto en numérica la variable 14
-
-cred$V2 <- V2
-cred$V14 <- V14
-
+cred <- read.csv("CASO_FINAL_crx.data", header = FALSE, na.strings = "?")
 str(cred)
 
 histograma <- function(x) {
@@ -125,24 +117,24 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V1, fill=V16)) + geom_bar()
 ```
-El resultado de este chi square parece muy bueno: p-value = 0.3181
+El resultado de este chi square parece muy bueno: p-value = 0.5769
 En el gráfico de barras se ve una mayor frecuencia sobre la categoría b
 
 
 
 ```{r}
-tbl = table(V2, cred$V16)
+tbl = table(cred$V2, cred$V16)
 tbl
 
 chisq.test(tbl)
 
-histograma(V2)
+histograma(cred$V2)
 
-boxplot(V2)
+boxplot(cred$V2)
 
-shapiro.test(V2)
+shapiro.test(cred$V2)
 ```
 El resultado del test chi es p-value = 0.1457 aunque con un warning. Parece que son variables dependientes.
 Para el histograma se puede observar una mayor acumulación para valores más bajos de V2.
@@ -173,9 +165,9 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V4, fill=V16)) + geom_bar()
 ```
-El resultado del test Chi para V4 es p-value = 4.816e-06 con lo que es un valor muy bajo.
+El resultado del test Chi para V4 es p-value = 2.011e-06 con lo que es un valor muy bajo.
 En el gráfico de barras se aprecia una mayor frecuencia para la categoría u de V4.
 
 
@@ -185,9 +177,9 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V5, fill=V16)) + geom_bar()
 ```
-El test Chi square para V5 es también muy malo: p-value = 4.816e-06
+El test Chi square para V5 es también muy malo: p-value = 2.011e-06
 En el gráfico de barras se aprecia una mayor frecuencia en la categoría g de V5.
 
 ```{r}
@@ -196,10 +188,10 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V6, fill=V16)) + geom_bar()
 ```
-El test Chi para V6 nos da un p-valor muy bajo: 9.921e-15 warning incluido.
-En el gráfico de barras puede verse que las frecuencias de las categorías de V6 son similares.
+El test Chi para V6 nos da un p-valor muy bajo: 3.5e-15 warning incluido.
+En el gráfico de barras puede verse que para la categoría c de V6 hay mayor frecuencia de aprobaciones y denegaciones.
 
 ```{r}
 tbl = table(cred$V7, cred$V16)
@@ -207,10 +199,10 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V7, fill=V16)) + geom_bar()
 ```
-El p-valor para V7 en chi square es muy bajo también: 9.093e-07
-En el gráfico de barras se puede apreciar una mayor frecuencia para la categoría v de V7
+El p-valor para V7 en chi square es muy bajo también: 3.625e-07
+En el gráfico de barras se puede apreciar una mayor frecuencia de aprobaciones y denegaciones para la categoría v de V7
 
 
 ```{r}
@@ -235,7 +227,7 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V9, fill=V16)) + geom_bar()
 ```
 Para V9 el chi square es muy malo: p-value < 2.2e-16
 El gráfico de barras muestra una mayor frecuencia de denegaciones en la categoría f y una mayor frecuencia de aprobaciones para la categoría t de V9.
@@ -246,7 +238,7 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V10, fill=V16)) + geom_bar()
 ```
 Para V10 el chi square es muy malo: p-value < 2.2e-16
 En el gráfico de barras se observa una frecuencia mayor de denegaciones para la categoría f y una mayor frecuencia de aprobaciones para la categoría t.
@@ -274,7 +266,7 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V12, fill=V16)) + geom_bar()
 ```
 Para V12 el p-valor es muy bueno p-value = 0.4509. Parece que las variables son dependientes.
 El gráfico de barras muestra una frecuencia de denegaciones ligeramente superior para la categoría f de V12.
@@ -286,7 +278,7 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V13, fill=V16)) + geom_bar()
 ```
 Para V13 el chi square no es muy bueno: p-value = 0.01009
 El gráfico de barras muestra una mayor frecuencia de aprobaciones y denegaciones para la categoría g de V13.
@@ -298,7 +290,7 @@ tbl
 
 chisq.test(tbl)
 
-barplot(tbl)
+ggplot(cred, aes(V14, fill=V16)) + geom_bar()
 ```
 Para V14 el chi square no sale muy bien: p-value = 0.005489 
 El gráfico de barras muestra frecuencias similares de categorías de V14.
@@ -320,26 +312,14 @@ Para V15 el chi square es malo: p-value = 0.0007081
 El histograma para esta variable nos dice que hay mayor acumulación para V15 = 0.
 El boxplot muestra que todos los valores son atípicos.
 
+Conclusiones:
+-Atendiendo al resultado de los test Chi Square, las variables V1, V2, V3 y V12 parece que son inddependientes y por tanto, las mejores para separar. 
 
-Atendiendo al resultado de los test Chi Square, las variables V1, V2, V3 y V12 parece que son dependientes y el resto independientes. 
-
-No parece que ninguna variable siga una distribución normal a juzgar por los histogramas presentados.
+-No parece que ninguna variable siga una distribución normal a juzgar por los histogramas presentados.
 
 
 
 2. Prepara el dataset convenientemente e imputa los valores faltantes usando la librería `missForest`
-```{r}
-cred$V1[cred$V1 == "?"] <- NA
-cred$V2 <- V2
-cred$V2[cred$V2 == "?"] <- NA
-cred$V4[cred$V4 == "?"] <- NA
-cred$V5[cred$V5 == "?"] <- NA
-cred$V6[cred$V6 == "?"] <- NA
-cred$V7[cred$V7 == "?"] <- NA
-cred$V14 <- V14
-cred$V14[cred$V14 == "?"] <- NA
-```
-Se asigna el valor NA a los valores faltantes
 
 ```{r}
 library(missForest)
@@ -432,6 +412,11 @@ library(e1071)
 confusionMatrix(as.factor(y_test), as.factor(y_pred), mode="everything")
 ```
 
+Conclusiones:
+El recall de Lasso mejora
+
+Seleccionaríamos el modelo Lasso por ser el mejor.
+
 5. Aporta los *log odds* de las variables predictoras sobre la variable objetivo.
 
 Buscamos el mejor modelo
@@ -448,7 +433,7 @@ coefficients(step)
 # predecimos 1 si la probabilidad es mayor que 0.5 y 0 si es menor que 0.5 y comparamos
 y_pred <- predict(step)>.5
 head(y_pred)
-head(SAheart$chd)
+head(cred$V16)
 ```
 
 La matriz de confusión y las métricas de error se pueden calcular. Para obtener todas las que se han dado incluir la opción `mode="everything"` . Además se obtiene intervalo de confianza para el accuracy
@@ -485,3 +470,8 @@ exp(confint(mod))
 ```
 6. Si por cada verdadero positivo ganamos 100e y por cada falso positivo perdemos 20e. ¿ Qué rentabilidad aporta aplicar este modelo?
 
+Atendiendo a la matriz de confusión vemos que hay 109 verdaderos positivos y 198 falsos positivos. Haciendo el cálculo de la rentabilidad:
+109TP * 100€ = 10900€ de ganancia
+198FP * 20€ = 3960€ de pérdida
+
+10900 - 3960 = 6940 euros de rentabilidad.
