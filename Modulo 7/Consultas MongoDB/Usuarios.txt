@@ -1,0 +1,41 @@
+db.Usuarios.insert({
+  "id": "u1",
+  "nombre": "Isabel",
+  "apellidos": "Cabrerizo Alonso",
+  "dni": "23454543G",
+  "email": "iscabal@gmail.com",
+  "ciudad": "Barcelona",
+  "portales": ["Tecnoempleo"],
+  "requisitos": ["PMP"],
+  "ofertas": [
+    {"id": "o1", "ciudad": "Madrid", "contrato": "Laboral Indefinido"}
+  ]
+})
+
+db.Usuarios.insert({
+  "id": "u2",
+  "nombre": "Ramón",
+  "apellidos": "Pérez Almendro",
+  "dni": "34555454F",
+  "email": "raperal@hotmail.es",
+  "ciudad": "Zaragoza",
+  "portales": ["Infojobs"],
+  "requisitos": ["Java"],
+  "ofertas": [
+    {"id": "o1", "ciudad": "Madrid", "contrato": "Laboral Indefinido"}
+  ]
+})
+
+db.Usuarios.insert({
+  "id": "u3",
+  "nombre": "Juan",
+  "apellidos": "García Martín",
+  "dni": "11111111H",
+  "email": "jugarmar@yahoo.es",
+  "ciudad": "Bilbao",
+  "portales": ["INEM"],
+  "requisitos": ["Inglés"],
+  "ofertas": [
+    {"id": "o2", "ciudad": "Bilbao", "contrato": "Laboral Indefinido"}
+  ]
+})

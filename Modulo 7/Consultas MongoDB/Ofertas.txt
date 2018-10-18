@@ -1,0 +1,33 @@
+db.Ofertas.insert({
+  "id": "o1",
+  "titulo": "Programador Java",
+  "enlace": "http://www.infojobs.es/",
+  "empresa": "Atos",
+  "portales": ["Infojobs"],
+  "requisitos": ["Java"],
+  "experiencia": "Becario",
+  "ciudad": "Madrid",
+  "contrato": "Laboral Indefinido",
+  "sueldo": "20000",
+  "usuarios": [
+    {"id": "u1", "nombre": "Isabel", "apellidos": "Cabrerizo Alonso"},
+    {"id": "u2", "nombre": "Ramón", "apellidos": "Pérez Almendro"}
+  ]
+})
+
+db.Ofertas.insert({
+  "id": "o2",
+  "titulo": "programador senior",
+  "enlace": "http://www.inem.es",
+  "empresa": "Indra",
+  "portales": ["INEM"],
+  "requisitos": ["gestión de proyectos", "disponibilidad geográfica", "inglés"],
+  "experiencia": "sí",
+  "ciudad": "Bilbao",
+  "contrato": "Laboral Indefinido",
+  "sueldo": "40000",
+  "fecha": "2018-02-03",
+  "usuarios": [
+    {"id": "u2", "nombre": "Ramón", "apellidos": "Pérez Almendro"}
+  ]
+})
