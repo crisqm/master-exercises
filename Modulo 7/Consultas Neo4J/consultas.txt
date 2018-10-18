@@ -1,0 +1,55 @@
+CREATE (:Director {Nombre : "Juan Carlos Fresnadillo"})
+CREATE (:Director {Nombre : "Robert Zemeckis"})
+CREATE (:Director {Nombre : "Brad Bird"})
+CREATE (:Director {Nombre : "Francis Lawrence"})
+CREATE (:Director {Nombre : "Joel Schumacher"})
+CREATE (:Director {Nombre : "Betty Thomas"})
+
+
+CREATE (:Pelicula {Titulo : "28 semanas después" })
+CREATE (:Pelicula {Titulo : "Contact"})
+CREATE (:Pelicula {Titulo : "Los Increíbles" })
+CREATE (:Pelicula {Titulo : "Constantine" })
+CREATE (:Pelicula {Titulo : "Batman y Robin" })
+CREATE (:Pelicula {Titulo : "Dr. Dolittle" })
+
+CREATE (:Productora {Nombre : "Fox" })
+CREATE (:Productora {Nombre : "Warner Bros" })
+CREATE (:Productora {Nombre : "Pixar" })
+
+
+Match (d:Director {Nombre : "Juan Carlos Fresnadillo"}),(p:Pelicula {Titulo : "28 semanas después"}) WITH d,p CREATE (d)-[:DIRIGIO]->(p)
+Match (d:Director {Nombre : "Robert Zemeckis"}),(p:Pelicula {Titulo : "Contact"}) WITH d,p CREATE (d)-[:DIRIGIO]->(p)
+Match (d:Director {Nombre : "Brad Bird"}),(p:Pelicula {Titulo : "Los Increíbles"}) WITH d,p CREATE (d)-[:DIRIGIO]->(p)
+Match (d:Director {Nombre : "Francis Lawrence"}),(p:Pelicula {Titulo : "Constantine"}) WITH d,p CREATE (d)-[:DIRIGIO]->(p)
+Match (d:Director {Nombre : "Joel Schumacher"}),(p:Pelicula {Titulo : "Batman y Robin"}) WITH d,p CREATE (d)-[:DIRIGIO]->(p)
+Match (d:Director {Nombre : "Betty Thomas"}),(p:Pelicula {Titulo : "Dr. Dolittle"}) WITH d,p CREATE (d)-[:DIRIGIO]->(p)
+
+
+Match (p:Pelicula {Titulo : "28 semanas después"}),(r:Productora {Nombre : "Fox"}) CREATE (p)-[:PRODUCIDA_EN]->(r)
+Match (p:Pelicula {Titulo : "Contact"}),(r:Productora {Nombre : "Warner Bros"}) CREATE (p)-[:PRODUCIDA_EN]->(r)
+Match (p:Pelicula {Titulo : "Los Increíbles"}),(r:Productora {Nombre : "Pixar"}) CREATE (p)-[:PRODUCIDA_EN]->(r)
+Match (p:Pelicula {Titulo : "Constantine"}),(r:Productora {Nombre : "Warner Bros"}) CREATE (p)-[:PRODUCIDA_EN]->(r)
+Match (p:Pelicula {Titulo : "Batman y Robin"}),(r:Productora {Nombre : "Warner Bros"}) CREATE (p)-[:PRODUCIDA_EN]->(r)
+Match (p:Pelicula {Titulo : "Dr. Dolittle"}),(r:Productora {Nombre : "Fox"}) CREATE (p)-[:PRODUCIDA_EN]->(r)
+
+
+MATCH (d:Director {Nombre:"Francis Lawrence"})-[:DIRIGIO]-(p) RETURN d,p
+
+
+MATCH (r:Productora {Nombre:"Warner Bros"})-[:PRODUCIDA_EN]-(p) RETURN r,p
+
+
+MATCH (d:Director)- [:DIRIGIO]-> (p:Pelicula) -[:PRODUCIDA_EN] ->( r:Productora {Nombre: "Fox"})
+WITH d
+MATCH (d:Director)- [:DIRIGIO]-> (p:Pelicula) -[:PRODUCIDA_EN] ->( r:Productora {Nombre: "Pixar"})
+return d.Nombre
+
+
+Primero hay que eliminar sus relaciones:
+MATCH (d:Director{Nombre: "Brad Bird"})-[r:DIRIGIO]->(p)
+DELETE r;
+
+A continuación, se elimina el nodo:
+MATCH (d:Director{Nombre: "Brad Bird"})
+DELETE d;
