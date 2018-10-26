@@ -1,0 +1,14 @@
+quiero sps00 O
+una di0fs0 B-cantidad
+pizza ncfs000 B-comida
+margherita aq0fs0 O
+
+quisiera da0mp0 O
+1 Z B-cantidad
+bocadillo ncmp000 B-comida
+
+tomare sps00 O
+una di0fs0 B-cantidad
+pizza ncfs000 B-comida
+carbonara aq0fs0 O
+

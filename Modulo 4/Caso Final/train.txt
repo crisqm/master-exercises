@@ -1,0 +1,90 @@
+quiero sps00 O
+una di0fs0 B-cantidad
+pizza ncfs000 B-comida
+margherita aq0fs0 O
+
+quisiera da0mp0 O
+1 Z B-cantidad
+bocadillo ncmp000 B-comida
+
+tomare sps00 O
+una di0fs0 B-cantidad
+pizza ncfs000 B-comida
+carbonara aq0fs0 O
+
+quiero da0mp0 O
+3 Z B-cantidad
+bocadillos ncmp000 B-comida
+de sps00 O
+anchoas np0000l O
+y cc O
+2 Z B-cantidad
+pizzas ncmp000 B-comida
+
+quiero da0mp0 O
+tres dn0cp0 B-cantidad
+bocadillos ncmp000 B-comida
+de sps00 O
+anchoas np0000l O
+y cc O
+dos dn0cp0 B-cantidad
+pizzas ncmp000 B-comida
+
+quiero sps00 O
+una di0fs0 B-cantidad
+hamburguesa ncfs000 B-comida
+con sps00 O
+queso da0fs0 O
+
+yo pp1csn00 O
+quiero vmip1s0 O
+dos dn0cp0 B-cantidad
+hamburguesas ncfp000 B-comida
+completas aq0fp0 O
+
+quiero sps00 O
+una di0fs0 B-cantidad
+ensalada ncfs000 B-comida
+mixta aq0fs0 O
+
+quiero sps00 O
+un di0ms0 B-cantidad
+pastel ncms000 B-comida
+de sps00 O
+cabracho da0fs0 O
+
+quiero sps00 O
+una di0fs0 B-cantidad
+pizza ncfs000 B-comida
+carbonara aq0fs0 O
+y cc O
+una di0fs0 B-cantidad
+pizza ncfs000 B-comida
+romana aq0fs0 O
+
+quiero sps00 O
+una di0fs0 B-cantidad
+tostada ncfs000 B-comida
+con sps00 O
+tomate da0fs0 O
+
+tomare sps00 O
+una di0fs0 B-cantidad
+pizza ncfs000 B-comida
+calzone aq0fs0 O
+
+tomare sps00 O
+un di0ms0 B-cantidad
+canape ncms000 B-comida
+de sps00 O
+pate da0fs0 O
+
+quiero da0ms0 O
+calamares ncms000 B-comida
+
+tomare sps00 O
+una di0fs0 B-cantidad
+hamburguesa ncfs000 B-comida
+sin sps00 O
+cebolla da0fs0 O
+
