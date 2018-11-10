@@ -1,0 +1,20 @@
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Milan","Toppings" : "Tenera,Pimientos Rojos,Pimientos Verdes,Queso Azul,Champiñones","Masa":"gruesa","Tipo":"Familiar","Precio":12}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Milan","Toppings" : "Tenera,Pimiento Rojo,Pimiento Verde,Queso Azul,Champiñones","Masa":"gruesa","Tipo" : "Media","Precio":9}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Milan","Toppings" : "Tenera,Pimiento Rojo,Pimiento Verde,Queso Azul,Champiñon","Masa":"fina","Tipo" : "Individual","Precio":5}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"SalmonAhumado","Toppings" : "Nata Fermentada,Salmon Ahumado,Cebolleta,Eneldo","Masa":"fina","Tipo" : "Familiar" ,"Precio":11}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"SalmonAhumado","Toppings" : "Nata Fermentada,Salmon Ahumado,Cebolleta,Eneldo","Tipo" : "Media" ,"Precio":8}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Madrid","Toppings" : "Callos,Perejil","Masa":"gruesa","Tipo" : "Familiar" ,"Precio":10}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Madrid","Toppings" : "Callos,Perejil","Masa":"gruesa","Tipo" : "Media" ,"Precio":7}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Mediterranea","Toppings" : "Aceitunas,Pimiento Rojo,Tomate Entero,Eneldo","Masa":"fina","Tipo" : "Familiar" ,"Precio":9}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Mediterranea","Toppings" : "Aceitunas,Pimiento Rojo,Tomate Entero,Eneldo","Masa":"gruesa","Tipo" : "fina" ,"Precio":6}
+{"index":{"_index":"pizzasmilan","_type":"pizzas"}}
+{"NombrePizza":"Mediterranea","Toppings" : "Aceitunas,Pimiento Rojo,Tomate Entero,Eneldo","Masa":"fina","Tipo" : "Media" ,"Precio":3}
