@@ -1,0 +1,29 @@
+curl -XPUT 'http://10.0.2.15:9200/sensors' -d '{
+      "mappings": {
+          "sensors" : {
+              "properties" : {
+                 "DeviceName": {"type": "text"},
+                 "serverId": {"type": "text"},
+                 "timestamp": {"type": "date"},
+                 "id": {"type": "integer"},
+                 "value": { "type": "double"}
+                  }
+              }
+          }
+      }
+}'
+
+
+#{"time":1528055852000,"devicename":"device19","position":"-51,66"}
+curl -XPUT 'http://10.0.2.15:9200/location' -d '{
+      "mappings": {
+          "location" : {
+              "properties" : {
+                 "time": {"type": "date"},
+                 "devicename": {"type": "text"},
+                 "position": {"type": "geo_point"}
+                  }
+              }
+          }
+      }
+  }'

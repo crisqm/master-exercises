@@ -1,0 +1,21 @@
+
+echo "deshabilitando leshan clasico"
+sudo systemctl status leshan
+sudo systemctl stop leshan
+
+echo "Habilitando leshan con conexion a kafka"
+sudo systemctl status leshan2
+sudo systemctl start leshan2
+sudo systemctl status leshan2
+
+echo "Creando otro LWm2M con kafka"
+sudo cp /usr/lib/systemd/system/leshan2.service /usr/lib/systemd/system/leshan3.service
+grep GW /usr/lib/systemd/system/leshan3.service
+sudo sed -i s'/KafkaGW/KafkaGW2 -lp 5680 -slp 5681 -wp 8077/g' /usr/lib/systemd/system/leshan3.service
+grep KafkaGW /usr/lib/systemd/system/leshan3.service
+sudo systemctl daemon-reload
+sudo systemctl status leshan3
+sudo systemctl start leshan3
+sudo systemctl status leshan3
+
+
